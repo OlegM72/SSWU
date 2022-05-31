@@ -28,7 +28,7 @@ namespace Task_5
         {
             get
             {
-                if (index >= 0 && index < GetLength())
+                if (arr != null && index >= 0 && index < GetLength())
                 {
                     return arr[index];
                 }
@@ -39,14 +39,22 @@ namespace Task_5
             }
             set
             {
-                arr[index] = value;
+                if (arr == null)
+                {
+                    throw new Exception("Index out of the array's range");
+                }
+                else
+                    arr[index] = value;
             }
         }
 
         public Vector(int[] arr)
         {
             this.arr = arr;
-            size = arr.Length;
+            if (arr == null)
+                size = 0;
+            else
+                size = arr.Length;
         }
 
         public Vector(int n)
@@ -55,31 +63,105 @@ namespace Task_5
             size = n;
         }
 
-        public Vector(string fileName) // reading from a text file
+        // Partial reading from the file and saving parts to two files
+        public Vector(string readFileName, string part1FileName, string part2FileName)
+        {
+            try
+            {
+                StreamReader reader = new StreamReader(readFileName);
+
+                // Count the number of lines (numbers) in the file
+                int streamSize = 0;
+                while (!reader.EndOfStream)
+                {
+                    reader.ReadLine();
+                    streamSize++;
+                }
+
+                // We can work only with half-sized arrays
+                int half1Size = streamSize - (streamSize / 2);
+
+                // reading the first half of the file and saving it to the first partial file
+                // it would be more efficient to read, SORT and save,
+                // but I want to have these functions separately for convenience
+                reader.Close();
+                reader = new StreamReader(readFileName); // reopening
+                StreamWriter writer = new StreamWriter(part1FileName);
+                int i = 0;
+                while (i < half1Size)
+                {
+                    string line = reader.ReadLine();
+                    int curr;
+                    if (line == null || !int.TryParse(line, out curr))
+                    {
+                        throw new ArgumentException();
+                    }
+                    else
+                    {
+                        writer.WriteLine(curr);
+                        i++;
+                    }
+                }
+
+                // reading the second half of the file and saving it to the second partial file
+                writer.Close();
+                writer = new StreamWriter(part2FileName);
+                while (!reader.EndOfStream)
+                {
+                    string line = reader.ReadLine();
+                    int curr;
+                    if (line == null || !int.TryParse(line, out curr))
+                    {
+                        throw new ArgumentException();
+                    }
+                    else
+                    {
+                        writer.WriteLine(curr);
+                        i++;
+                    }
+                }
+                size = i;
+                writer.Close();
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                size = 0;
+            }
+            arr = null; // all the data are in the files
+        }
+
+        public bool SaveToFile(string fileName) // fully saving the array to the text file, 1 line per number
+        // saving as a single string seems to be better, it will be implemented in the next versions :-)
+        {
+            try
+            {
+                StreamWriter writer = new StreamWriter(fileName);
+                for (int i = 0; i < GetLength(); i++)
+                {
+                    writer.WriteLine(arr[i]);
+                }
+                writer.Close();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return false;
+            }
+        }
+
+        public Vector(string fileName) // FULL reading from a text file
         {
             try
             {
                 StreamReader stream = new StreamReader(fileName);
 
-                // Count the number of lines (numbers) in the file
+                // reading the file to find its size
                 int streamSize = 0;
                 while (!stream.EndOfStream)
                 {
-                    stream.ReadLine();
-                    streamSize++;
-                }
-                
-                // We can work only with half-sized arrays
-                int half1Size = streamSize / 2;
-                // Vector half1 = new Vector(half1Size);
-
-                var readarray = new int[half1Size + 1]; // + 1 for the second half in the case of an odd size
-                // reading the first half of the file
-                stream.Close();
-                stream = new StreamReader(fileName); // reopening
-                int i = 0;
-                while (i < half1Size)
-                {
                     string line = stream.ReadLine();
                     int curr;
                     if (line == null || !int.TryParse(line, out curr))
@@ -88,40 +170,37 @@ namespace Task_5
                     }
                     else
                     {
-                        readarray[i] = curr;
-                        i++;
+                        streamSize++;
                     }
                 }
-                
-                half1Size = i;
+
+                size = streamSize;
                 // initializing the array of the Vector
-                arr = new int[streamSize];
-                Array.Copy(readarray, 0, arr, 0, half1Size);
-
-                // reading the second half of the file
-                i = 0;
-                while (!stream.EndOfStream)
-                {
-                    string line = stream.ReadLine();
-                    int curr;
-                    if (line == null || !int.TryParse(line, out curr))
-                    {
-                        throw new ArgumentException();
-                    }
-                    else
-                    {
-                        readarray[i] = curr;
-                        i++;
-                    }
-                }
-                Array.Copy(readarray, 0, arr, half1Size, i);
-                
+                arr = new int[size];
                 if (arr == null)
                 {
                     throw new ArgumentNullException();
                 }
 
-                size = half1Size + i; // + half2Size
+                // reading again the file to the array arr
+                stream.Close();
+                stream = new StreamReader(fileName); // reopening
+                int i = 0;
+                while (!stream.EndOfStream)
+                {
+                    string line = stream.ReadLine();
+                    int curr;
+                    if (line == null || !int.TryParse(line, out curr))
+                    {
+                        throw new ArgumentException();
+                    }
+                    else
+                    {
+                        arr[i] = curr;
+                        i++;
+                    }
+                }
+                stream.Close();
             }
             catch (Exception ex)
             {
@@ -142,6 +221,9 @@ namespace Task_5
 
         public void InitShuffle()
         {
+            if (arr == null)
+                return; // some error;
+            
             for (int i = 0; i < GetLength(); i++)
             {
                 arr[i] = 0;
@@ -163,19 +245,103 @@ namespace Task_5
             }
         }
 
-        public bool IsEqual(Vector vector1, Vector vector2)
+        // Sorting with files (merge sort partial files and merge them to the sortedFileName)
+        public void SplitMergeSortFiles(string part1FileName, string part2FileName, string sortedFileName)
         {
-            if (vector1 == null || vector2 == null)
-                return false;
-            int len = vector1.GetLength();
-            if (len != vector2.GetLength())
-                return false;
-            for (int i = 0; i < len; i++)
+            Vector Part = new Vector(part1FileName); // fully reading the part 1
+            Part.SplitMergeSort();
+            if (!Part.SaveToFile(part1FileName))
+               return;
+
+            Part = new Vector(part2FileName); // fully reading the part 2
+            Part.SplitMergeSort();
+            if (!Part.SaveToFile(part2FileName))
+                return;
+
+            MergeFiles(part1FileName, part2FileName, sortedFileName); // merging two sorted files
+        }
+
+        // merging two sorted files into bigger sorted file
+        public void MergeFiles(string part1FileName, string part2FileName, string sortedFileName)
+        {
+            StreamReader reader1 = new StreamReader(part1FileName);
+            StreamReader reader2 = new StreamReader(part2FileName);
+            StreamWriter writer = new StreamWriter(sortedFileName);
+            bool read1 = true; // true if we need to read the next value from the file 1
+            bool read2 = true; // true if we need to read the next value from the file 2
+            int curr1 = -1; // the number read last from reader1
+            int curr2 = -1; // the number read last from reader2
+            string line1 = null;
+            string line2 = null;
+            do
             {
-                if (vector1[i] != vector2[i])
-                    return false;
+                if (read1 && !reader1.EndOfStream)
+                {
+                    line1 = reader1.ReadLine();
+                    if (line1 == null || !int.TryParse(line1, out curr1))
+                    {
+                        line1 = null;
+                        throw new ArgumentException();
+                    }
+                }
+                if (read2 && !reader2.EndOfStream)
+                {
+                    line2 = reader2.ReadLine();
+                    if (line2 == null || !int.TryParse(line2, out curr2))
+                    {
+                        line2 = null;
+                        throw new ArgumentException();
+                    }
+                }
+
+                int currOut; // the number to write next
+                if (line1 != null && line2 != null)
+                {
+                    if (curr1 < curr2)
+                    {
+                        currOut = curr1;
+                        read1 = true;
+                        read2 = false;
+                    }
+                    else
+                    {
+                        currOut = curr2;
+                        read1 = false;
+                        read2 = true;
+                    }
+                    writer.WriteLine(currOut);
+                }
             }
-            return true;
+            while ((read1 && !reader1.EndOfStream) ||
+                   (read2 && !reader2.EndOfStream));
+
+            if (reader1.EndOfStream)
+            {
+                if (!read1) // we have not yet written the last value from the first file
+                    writer.WriteLine(curr1);
+                if (!read2) // we have not yet written the last value from the second file
+                    writer.WriteLine(curr2);
+                while (!reader2.EndOfStream)
+                {
+                    string line = reader2.ReadLine();
+                    writer.WriteLine(line);
+                }
+            }
+            else
+            {
+                if (!read2) // we have not yet written the last value from the second file
+                    writer.WriteLine(curr2);
+                if (!read1) // we have not yet written the last value from the first file
+                    writer.WriteLine(curr1);
+                while (!reader1.EndOfStream)
+                {
+                    string line = reader1.ReadLine();
+                    writer.WriteLine(line);
+                }
+            }
+            writer.Close();
+            reader1.Close();
+            reader2.Close();
         }
 
         void Merge(int l, int q, int r) // Merging two sorted parts of the array: from l to q and from q+1 to r
@@ -199,9 +365,10 @@ namespace Task_5
             }
             if (i > q)
             {
-                for (int m = j; m <= r; m++)
+                while (j <= r)
                 {
-                    temp[k] = arr[m];
+                    temp[k] = arr[j];
+                    j++;
                     k++;
                 }
             }
@@ -303,6 +470,9 @@ namespace Task_5
 
         public override string ToString()
         {
+            if (arr == null)
+                return ""; // some error;
+
             string str = "";
             for (int i = 0; i < GetLength(); i++)
             {
