@@ -5,10 +5,10 @@ namespace Task_5
 {
     internal class Program
     {
-		static string ReadFileName = "Test-5.txt";
-		static string Part1FileName = "SortPart1.txt";
-		static string Part2FileName = "SortPart2.txt";
-		static string SortedFileName = "SortedResult.txt";
+		static string ReadFileName = "../../../Test-5.txt";
+		static string Part1FileName = "../../../SortPart1.txt";
+		static string Part2FileName = "../../../SortPart2.txt";
+		static string SortedFileName = "../../../SortedResult.txt";
 
 		static void Main(string[] args)
         {
