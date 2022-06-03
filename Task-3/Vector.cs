@@ -18,19 +18,26 @@ namespace Task_3
         public int this[int index]
         {
             get
-            { 
-                if(index >= 0 && index < GetLength())
+            {
+                if (arr != null && index >= 0 && index < GetLength())
                 {
                     return arr[index];
                 }
                 else
                 {
-                    throw new Exception("Index out of the array's range");
+                    throw new Exception($"Index {index} is out of the array's range");
                 }
             }
-            set 
+            set
             {
-                arr[index] = value;
+                if (arr != null && index >= 0 && index < GetLength())
+                {
+                    arr[index] = value;
+                }
+                else
+                {
+                    throw new Exception($"Index {index} is out of the array's range");
+                }
             }
         }
 
@@ -44,7 +51,17 @@ namespace Task_3
             arr = new int[n];
         }
 
-        public Vector() { }
+        public Vector() // Create a vector of a random size 1..100 :)
+        {
+            Random random = new Random();
+            arr = new int[random.Next(1, 100)];
+        }
+
+        public Vector(Vector source) // makes a copy of the vector
+        {
+            this.arr = new int[source.GetLength()];
+            Array.Copy(source.arr, this.arr, source.GetLength());
+        }
 
         public void RandomInitialization(int a, int b)
         {
@@ -81,7 +98,8 @@ namespace Task_3
             }
         }
 
-        public string GetLongestSeq() // знаходить найдовшу підпослідовність однакових чисел.
+        public void GetLongestSeq(out int freq, out int number)
+            // знаходить найдовшу підпослідовність однакових чисел
         {
             Pair max = new Pair(0, 0);
             Pair curr = new Pair(0, 0);
@@ -111,7 +129,8 @@ namespace Task_3
                     curr.Freq = 1;
                 }
             }
-            return $"{max.Freq} repeats of {max.Number}";
+            freq = max.Freq;
+            number = max.Number;
         }
 
         public Pair[] CalculateFreq()
@@ -155,14 +174,25 @@ namespace Task_3
             return result;
         }
 
-        public Vector MyReverse()
+        public void MyReverse()
         {
-            Vector new_vector = new Vector(GetLength());
-            for (int i = 0; i < GetLength(); i++)
+            /* варіант з виділенням пам'яті, оставляє старий масив в пам'яті, поки його CLR не очистить:
+               int[] reversed = new int[GetLength()];
+               for (int i = 0; i < reversed.Length; i++)
+               {
+                   reversed[reversed.Length - i - 1] = arr[i];
+               }
+               arr = reversed;
+            */
+            // варіант без виділення пам'яті, більш повільний:
+            int len = GetLength(); int middle = len / 2;
+            len--; // для пришвидшення операцій, щоб не писати (len - 1) - i
+            for (int i = 0; i < middle; i++)
             {
-                new_vector[GetLength() - i - 1] = arr[i];
+                int temp = arr[i];
+                arr[i] = arr[len - i];
+                arr[len - i] = temp;
             }
-            return new_vector;
         }
 
         public void StandardReverse()
@@ -170,24 +200,33 @@ namespace Task_3
             Array.Reverse(arr);
         }
 
-        public bool IsEqual(Vector vector1, Vector vector2)
+        public bool IsEqual(Vector compared)
         {
-            if (vector1 == null || vector2 == null)
+            if (compared == null) // this != null - it's guaranteed :)
                 return false;
-            int len = vector1.GetLength();
-            if (len != vector2.GetLength())
+            int len = GetLength();
+            if (len != compared.GetLength())
                 return false;
             for (int i = 0; i < len; i++)
             {
-                if (vector1[i] != vector2[i])
+                if (arr[i] != compared[i])
                     return false;
             }
             return true;
         }
 
-        public bool isPalindrome()
+        public bool IsPalindrome()
         {
-            return IsEqual(this.MyReverse(), this);
+            // a simple method: return IsEqual(this.MyReverse(), this);
+            int len = GetLength(); // to speedup the calcultaions
+            int middle = len / 2;
+            len--;  // to speedup the calcultaions :)
+            for (int i = 0; i < middle; i++)
+            {
+                if (arr[i] != arr[len - i])
+                    return false;
+            }
+            return true;
         }
 
         public override string ToString()
@@ -206,14 +245,14 @@ namespace Task_3
         private int[,] matr;
         private readonly int rows, cols; // кількість строк та столбців
 
-        public Matrix(int Rows, int Cols)
+        public Matrix(int rows, int cols)
         {
-            if (Rows <= 0 || Cols <= 0)
+            if (rows <= 0 || cols <= 0)
             {
-                Console.WriteLine("Розмірність матриці недопустима");
+                throw new Exception("Matrix dimensions are not allowed");
             }
-            cols = Cols;
-            rows = Rows;
+            this.cols = cols;
+            this.rows = rows;
             matr = new int[rows, cols];
         }
 
@@ -227,8 +266,7 @@ namespace Task_3
         {
             if (rows != cols)
             {
-                Console.WriteLine("Матриця не квадратна");
-                return;
+                throw new Exception("Matrix is not square");
             }
 
             if (direction != Direction.Vniz_Vpravo)
@@ -259,16 +297,18 @@ namespace Task_3
             }
         }
 
-        public void Show()
+        public override string ToString()
         {
+            string result = "";
             for (int i = 0; i < rows; ++i)
             {
                 for (int j = 0; j < cols; ++j)
                 {
-                    Console.Write($"{matr[i, j],4}");
+                    result += $"{matr[i, j],4}";
                 }
-                Console.WriteLine();
+                result += "\r\n";
             }
+            return result;
         }
     }
 }

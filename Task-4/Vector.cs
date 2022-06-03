@@ -26,19 +26,32 @@ namespace Task_4
         {
             get
             {
-                if (index >= 0 && index < GetLength())
+                if (arr != null && index >= 0 && index < GetLength())
                 {
                     return arr[index];
                 }
                 else
                 {
-                    throw new Exception("Index out of the array's range");
+                    throw new Exception($"Index {index} is out of the array's range");
                 }
             }
             set
             {
-                arr[index] = value;
+                if (arr != null && index >= 0 && index < GetLength())
+                {
+                    arr[index] = value;
+                }
+                else
+                {
+                    throw new Exception($"Index {index} is out of the array's range");
+                }
             }
+        }
+
+        public Vector(Vector source) // makes a copy of the vector
+        {
+            this.arr = new int[source.GetLength()];
+            Array.Copy(source.arr, this.arr, source.GetLength());
         }
 
         public Vector(int[] arr)
@@ -51,7 +64,11 @@ namespace Task_4
             arr = new int[n];
         }
 
-        public Vector() { }
+        public Vector() // Create a vector of a random size 1..100 :)
+        {
+            Random random = new Random();
+            arr = new int[random.Next(1, 100)];
+        }
 
         public void RandomInitialization(int a, int b)
         {
@@ -90,16 +107,16 @@ namespace Task_4
             Array.Reverse(arr);
         }
 
-        public bool IsEqual(Vector vector1, Vector vector2)
+        public bool IsEqual(Vector compared)
         {
-            if (vector1 == null || vector2 == null)
+            if (compared == null) // this != null - it's guaranteed :)
                 return false;
-            int len = vector1.GetLength();
-            if (len != vector2.GetLength())
+            int len = GetLength();
+            if (len != compared.GetLength())
                 return false;
             for (int i = 0; i < len; i++)
             {
-                if (vector1[i] != vector2[i])
+                if (arr[i] != compared[i])
                     return false;
             }
             return true;
@@ -114,13 +131,14 @@ namespace Task_4
                 case SortType.Last:
                     return right;
                 case SortType.Middle:
-                    return left + ((right - left + 1) / 2); // if (0, 1), need to be 1
+                    return (left + right) / 2 + 1; // + 1 because in case (0, 1) we need middle = 1
                 default:
                     return 0;
             }
         }
 
-        private void QuickSortPart(int left, int right, SortType sortType) // sorting the array part from "left" to "right"
+        private void QuickSortPart(int left, int right, SortType sortType)
+            // sorting the array part from "left" to "right"
         {
             if (left >= right)
                 return; // recursion stop condition
@@ -147,7 +165,7 @@ namespace Task_4
             QuickSortPart(i, right, sortType); // if (i < right) -- sort the right part
         }
 
-        public void QuickSort(SortType sortType) // sorting the array part from "left" to "right"
+        public void QuickSort(SortType sortType) // sorting the full array
         {
             QuickSortPart(0, GetLength()-1, sortType);
         }

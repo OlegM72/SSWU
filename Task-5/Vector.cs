@@ -1,9 +1,5 @@
 ﻿using System;
 using System.IO;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Task_5
 {
@@ -34,17 +30,19 @@ namespace Task_5
                 }
                 else
                 {
-                    throw new Exception("Index out of the array's range");
+                    throw new Exception($"Index {index} is out of the array's range");
                 }
             }
             set
             {
-                if (arr == null)
+                if (arr != null && index >= 0 && index < GetLength())
                 {
-                    throw new Exception("Index out of the array's range");
+                    arr[index] = value;
                 }
                 else
-                    arr[index] = value;
+                {
+                    throw new Exception($"Index {index} is out of the array's range");
+                }
             }
         }
 
@@ -61,6 +59,18 @@ namespace Task_5
         {
             arr = new int[n];
             size = n;
+        }
+
+        public Vector() // Create a vector of a random size 1..100 :)
+        {
+            Random random = new Random();
+            arr = new int[random.Next(1, 100)];
+        }
+
+        public Vector(Vector source) // makes a copy of the vector
+        {
+            this.arr = new int[source.GetLength()];
+            Array.Copy(source.arr, this.arr, source.GetLength());
         }
 
         // Partial reading from the file and saving parts to two files

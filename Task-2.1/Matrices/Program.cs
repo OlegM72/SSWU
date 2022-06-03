@@ -7,18 +7,18 @@ namespace Matrices_2
         private int[,] matr;
         private readonly int rows, cols; // кількість строк та столбців
 
-        public Matrix(int Rows, int Cols)
+        public Matrix(int rows, int cols)
         {
-            if (Rows <= 0 || Cols <= 0)
+            if (rows <= 0 || cols <= 0)
             {
-                Console.WriteLine("Розмірність матриці недопустима");
+                throw new Exception("Розмірність матриці недопустима");
             }
-            cols = Cols;
-            rows = Rows;
+            this.cols = cols;
+            this.rows = rows;
             matr = new int[rows, cols];
         }
 
-        private void HorisontalSnake() // Заповнення матриці у вигляді горизонтальної змійки
+        public void HorisontalSnake() // Заповнення матриці у вигляді горизонтальної змійки
         {
             int curr_no = 1; // поточне значення комірки - починаємо з 1
             for (int i = 0; i < rows; i++) // перебір строк
@@ -36,7 +36,7 @@ namespace Matrices_2
             }
         }
 
-        private void VerticalSnake() // Заповнення матриці у вигляді вертикальної змійки
+        public void VerticalSnake() // Заповнення матриці у вигляді вертикальної змійки
         {
             int curr_no = 1; // поточне значення комірки - починаємо з 1
             for (int i = 0; i < cols; i++) // перебір стовбців
@@ -54,12 +54,15 @@ namespace Matrices_2
             }
         }
 
-        private void SpiralSnake()
+        public void SpiralSnake()
         {
             int counter = 1; // поточне число для комірки
             int direct_x = 1, direct_y = 1; // напрямки (спочатку вниз та вправо)
             int x = 0, y = 0; // y - строка, x - стовбець
-            Clear(); // заповнення нулями
+            Clear(); // заповнення нулями - робиться тому, що ми потім будемо йти тільки по нульовим
+                     // значенням, та тому, що поточна матриця вже могла бути заповненою не дефолтними числами
+                     // так, можливо, є більш простий варіант реалізації з номерами вже заповнених стовпцов
+                     // та рядків, але це, на мою думку, теж заплутано. В Інтернеті не шукав рішення.
             do
             {
                 while ((y >= 0) && (y < rows) && (matr[y, x] == 0))
@@ -83,12 +86,11 @@ namespace Matrices_2
             } while (counter <= cols * rows);
         }
 
-        private void DiagonalSnake()
+        public void DiagonalSnake()
         {
             if (rows != cols)
             {
-                Console.WriteLine("Матриця не квадратна");
-                return;
+                throw new Exception("Матриця не квадратна");
             }
 
             int counter = 1; // поточне число для комірки
@@ -116,16 +118,18 @@ namespace Matrices_2
             }
         }
 
-        private void Show()
+        public override string ToString()
         {
+            string result = "";
             for (int i = 0; i < rows; ++i)
             {
                 for (int j = 0; j < cols; ++j)
                 {
-                    Console.Write($"{matr[i, j],4}");
+                    result += $"{matr[i, j],4}";
                 }
-                Console.WriteLine();
+                result += "\r\n";
             }
+            return result;
         }
 
         private void Clear()
@@ -138,41 +142,47 @@ namespace Matrices_2
                 }
             }
         }
-        public void FillAndShow()
+    } // class Matrix
+
+    class Prog
+    {
+        static int Main(string[] args)
         {
-            if (rows != cols)
+            int size_x = 0;
+            int size_y = 0;
+            try
+            {
+                Console.WriteLine("Введіть ціле число - кількість строк матриці");
+                size_y = Convert.ToInt32(Console.ReadLine());
+                Console.WriteLine("Введіть ціле число - кількість столбців матриці");
+                size_x = Convert.ToInt32(Console.ReadLine());
+            }
+            catch (FormatException e)
+            {
+                Console.WriteLine("Format exception: " + e.Message);
+                return -1;
+            }
+            Matrix m = new Matrix(size_y, size_x);
+            if (size_y != size_x)
             {
                 Console.WriteLine("Матриця не квадратна. Деякі види заповнювання не будуть здійснюватись");
             }
             Console.WriteLine("Горизонтальна змійка:");
-            HorisontalSnake();
-            Show();
-            Console.WriteLine();
+            m.HorisontalSnake();
+            Console.WriteLine(m); // call ToString() method
             Console.WriteLine("Вертикальна змійка:");
-            VerticalSnake();
-            Show();
-            Console.WriteLine();
+            m.VerticalSnake();
+            Console.WriteLine(m);
             Console.WriteLine("Спіральна змійка:");
-            SpiralSnake();
-            Show();
-            if (rows != cols) return;
-            Console.WriteLine();
+            m.SpiralSnake();
+            Console.WriteLine(m);
+            if (size_y != size_x)
+                return 0;
             Console.WriteLine("Діагональна змійка:");
-            DiagonalSnake();
-            Show();
-        }
-    }
+            m.DiagonalSnake();
+            Console.WriteLine(m);
 
-    class Prog
-    {
-        static void Main(string[] args)
-        {
-            Console.WriteLine("Введіть ціле число - кількість строк матриці");
-            int size_y = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("Введіть ціле число - кількість столбців матриці");
-            int size_x = Convert.ToInt32(Console.ReadLine());
-            Matrix m = new Matrix(size_y, size_x);
-            m.FillAndShow();
+            return 0;
         }
     }
 }
