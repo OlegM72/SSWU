@@ -1,0 +1,6 @@
+The text file contains a text, between the words there can be any number of spaces.
+Punctuation marks are used correctly and are tied to words.
+Create a class for working with text that can read information from the stream and print the information as well as have methods for editing and data processing.
+Split the text to sentences and print each sentence from the paragraph to the file "Result.txt", which has surely to be added to the repository.
+Assume that a sentence may be… in several lines.
+Print on the screen the longest and shortest words of every sentence.
