@@ -1,0 +1,29 @@
+07.06.2022 04.12.21 Error (line 11): Input string was not in a correct format.
+07.06.2022 04.12.21 Error (line 12): Input string was not in a correct format.
+07.06.2022 04.12.21 Error (line 13): Not normal expiration term.
+07.06.2022 16.55.38 Error (line 11): Input string was not in a correct format.
+07.06.2022 16.55.38 Error (line 12): Input string was not in a correct format.
+07.06.2022 16.55.38 Error (line 13): Not normal expiration term.
+07.06.2022 17.16.30 Error (line 11): Input string was not in a correct format.
+07.06.2022 17.16.30 Error (line 12): Input string was not in a correct format.
+07.06.2022 17.16.30 Error (line 13): Not normal expiration term.
+07.06.2022 17.17.24 Error (line 11): Input string was not in a correct format.
+07.06.2022 17.17.25 Error (line 12): Input string was not in a correct format.
+07.06.2022 17.17.25 Error (line 13): Not normal expiration term.
+07.06.2022 17.18.18 Error (line 11): Input string was not in a correct format.
+07.06.2022 17.18.18 Error (line 12): Input string was not in a correct format.
+07.06.2022 17.18.18 Error (line 13): Not normal expiration term.
+07.06.2022 17.19.45 Log line # 12 change fulfilled. The old line was: 07.06.2022 17.17.25 Error (line 13): Not normal expiration term.
+07.06.2022 17.19.45 The new line is: Comment: this is just a copy of the previous string because the program was run many times
+07.06.2022 17.20.29 Log line # 15 change fulfilled. The old line was: 07.06.2022 17.18.18 Error (line 13): Not normal expiration term.
+07.06.2022 17.20.29 The new line is: Trying to change the line #15
+07.06.2022 17.29.48 Error (line 11): Input string was not in a correct format.
+07.06.2022 17.29.48 Error (line 12): Input string was not in a correct format.
+07.06.2022 17.29.48 Error (line 13): Not normal expiration term.
+07.06.2022 17.30.28 There is no line # 29 int the log
+07.06.2022 17.32.44 Error (line 11): Input string was not in a correct format.
+07.06.2022 17.32.44 Error (line 12): Input string was not in a correct format.
+07.06.2022 17.32.44 Error (line 13): Not normal expiration term.
+07.06.2022 17.33.00 There is no line # 29 in the log
+07.06.2022 17.33.19 Log line # 10 change fulfilled. The old line was: 07.06.2022 17.17.24 Error (line 11): Input string was not in a correct format.
+07.06.2022 17.33.19 The new line is:Changing the line 10
