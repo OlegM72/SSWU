@@ -1,7 +1,3 @@
-07.06.2022 17.32.44 Error (line 11): Input string was not in a correct format.
-07.06.2022 17.32.44 Error (line 12): Input string was not in a correct format.
-07.06.2022 17.32.44 Error (line 13): Not normal expiration term.
-
 The list of products from the file:
 1. Milk, 1 kg, 22.5 UAH, expires in 7 days
 2. Pork, 1.1 kg, 167.53 UAH, expires in 5 days. A meat of sort Sort1, type Svini
@@ -14,62 +10,80 @@ The list of products from the file:
 TOTAL: 8.1 kg, 1187.08 UAH, meat: 4 pieces
 
 Now the randomly initialised list of products:
-1. Meat, 1 kg, 136.4 UAH, expires in 7 days. A meat of sort Sort1, type Svini
-2. Meat, 2 kg, 190 UAH, expires in 10 days. A meat of sort HighSort, type Telia
-3. Not meat, 1 kg, 64 UAH, expires in 18 days
-4. Meat, 4 kg, 51.25 UAH, expires in 3 days. A meat of sort HighSort, type Svini
-5. Not meat, 4 kg, 31 UAH, expires in 2 days
-6. Meat, 4 kg, 122.5 UAH, expires in 11 days. A meat of sort HighSort, type Telia
-7. Meat, 3 kg, 162.5 UAH, expires in 12 days. A meat of sort HighSort, type Baran
-8. Not meat, 3 kg, 86 UAH, expires in 8 days
-9. Not meat, 3 kg, 84 UAH, expires in 9 days
-10. Meat, 3 kg, 181.25 UAH, expires in 17 days. A meat of sort HighSort, type Baran
-TOTAL: 36.1 kg, 2295.98 UAH, meat: 6 pieces
+1. Meat, 4 kg, 173.75 UAH, expires in 14 days. A meat of sort HighSort, type Telia
+2. Meat, 4 kg, 77 UAH, expires in 4 days. A meat of sort Sort1, type Telia
+3. Not meat, 2 kg, 78 UAH, expires in 19 days
+4. Meat, 1 kg, 122.1 UAH, expires in 14 days. A meat of sort Sort1, type Baran
+5. Meat, 3 kg, 105.6 UAH, expires in 7 days. A meat of sort Sort1, type Telia
+6. Not meat, 4 kg, 124 UAH, expires in 18 days
+7. Not meat, 1 kg, 12 UAH, expires in 12 days
+8. Meat, 4 kg, 165 UAH, expires in 9 days. A meat of sort HighSort, type Baran
+9. Meat, 2 kg, 178.2 UAH, expires in 14 days. A meat of sort Sort1, type Svini
+10. Meat, 3 kg, 66 UAH, expires in 15 days. A meat of sort Sort1, type Telia
+TOTAL: 36.1 kg, 2288.73 UAH, meat: 7 pieces
 
 The log file content:
-1: 07.06.2022 04.12.21 Error (line 11): Input string was not in a correct format.
-2: 07.06.2022 04.12.21 Error (line 12): Input string was not in a correct format.
-3: 07.06.2022 04.12.21 Error (line 13): Not normal expiration term.
-4: 07.06.2022 16.55.38 Error (line 11): Input string was not in a correct format.
-5: 07.06.2022 16.55.38 Error (line 12): Input string was not in a correct format.
-6: 07.06.2022 16.55.38 Error (line 13): Not normal expiration term.
-7: 07.06.2022 17.16.30 Error (line 11): Input string was not in a correct format.
-8: 07.06.2022 17.16.30 Error (line 12): Input string was not in a correct format.
-9: 07.06.2022 17.16.30 Error (line 13): Not normal expiration term.
-10: 07.06.2022 17.17.24 Error (line 11): Input string was not in a correct format.
-11: 07.06.2022 17.17.25 Error (line 12): Input string was not in a correct format.
-12: 07.06.2022 17.17.25 Error (line 13): Not normal expiration term.
-13: 07.06.2022 17.18.18 Error (line 11): Input string was not in a correct format.
-14: 07.06.2022 17.18.18 Error (line 12): Input string was not in a correct format.
-15: 07.06.2022 17.18.18 Error (line 13): Not normal expiration term.
-16: 07.06.2022 17.19.45 Log line # 12 change fulfilled. The old line was: 07.06.2022 17.17.25 Error (line 13): Not normal expiration term.
-17: 07.06.2022 17.19.45 The new line is: Comment: this is just a copy of the previous string because the program was run many times
-18: 07.06.2022 17.20.29 Log line # 15 change fulfilled. The old line was: 07.06.2022 17.18.18 Error (line 13): Not normal expiration term.
-19: 07.06.2022 17.20.29 The new line is: Trying to change the line #15
-20: 07.06.2022 17.29.48 Error (line 11): Input string was not in a correct format.
-21: 07.06.2022 17.29.48 Error (line 12): Input string was not in a correct format.
-22: 07.06.2022 17.29.48 Error (line 13): Not normal expiration term.
-23: 07.06.2022 17.30.28 There is no line # 29 int the log
-24: 07.06.2022 17.32.44 Error (line 11): Input string was not in a correct format.
-25: 07.06.2022 17.32.44 Error (line 12): Input string was not in a correct format.
-26: 07.06.2022 17.32.44 Error (line 13): Not normal expiration term.
+1: 07.06.2022 04:12:21 Error (line 11): Input string was not in a correct format.
+2: 07.06.2022 04:12:21 Error (line 12): Input string was not in a correct format.
+3: 07.06.2022 04:12:21 Error (line 13): Not normal expiration term.
+4: 07.06.2022 16:55:38 Error (line 11): Input string was not in a correct format.
+5: 07.06.2022 16:55:38 Error (line 12): Input string was not in a correct format.
+6: 07.06.2022 16:55:38 Error (line 13): Not normal expiration term.
+7: 07.06.2022 17:16:30 Error (line 11): Input string was not in a correct format.
+8: 07.06.2022 17:16:30 Error (line 12): Input string was not in a correct format.
+9: 07.06.2022 17:16:30 Error (line 13): Not normal expiration term.
+10: 07.06.2022 17:17:24 Error (line 11): Input string was not in a correct format.
+11: 07.06.2022 17:17:25 Error (line 12): Input string was not in a correct format.
+12: 07.06.2022 17:17:25 Error (line 13): Not normal expiration term.
+13: 07.06.2022 17:18:18 Error (line 11): Input string was not in a correct format.
+14: 07.06.2022 17:18:18 Error (line 12): Input string was not in a correct format.
+15: 07.06.2022 17:18:18 Error (line 13): Not normal expiration term.
+16: 07.06.2022 17:19:45 Log line # 12 change fulfilled. The old line was: 07.06.2022 17:17:25 Error (line 13): Not normal expiration term.
+17: 07.06.2022 17:19:45 The new line is: Comment: this is just a copy of the previous string because the program was run many times
+18: 07.06.2022 17:20:29 Log line # 15 change fulfilled. The old line was: 07.06.2022 17:18:18 Error (line 13): Not normal expiration term.
+19: 07.06.2022 17:20:29 The new line is: Trying to change the line #15
+20: 07.06.2022 17:29:48 Error (line 11): Input string was not in a correct format.
+21: 07.06.2022 17:29:48 Error (line 12): Input string was not in a correct format.
+22: 07.06.2022 17:29:48 Error (line 13): Not normal expiration term.
+23: 07.06.2022 17:30:28 There is no line # 29 int the log
+24: 07.06.2022 17:32:44 Error (line 11): Input string was not in a correct format.
+25: 07.06.2022 17:32:44 Error (line 12): Input string was not in a correct format.
+26: 07.06.2022 17:32:44 Error (line 13): Not normal expiration term.
+27: 07.06.2022 17:33:00 There is no line # 29 in the log
+28: 07.06.2022 17:33:19 Log line # 10 change fulfilled. The old line was: 07.06.2022 17:17:24 Error (line 11): Input string was not in a correct format.
+29: 07.06.2022 17:33:19 The new line is: Changing the line 10
+30: 07.06.2022 21:17:13 Log line # 15 change fulfilled. The old line was: 07.06.2022 17:18:18 Error (line 13): Not normal expiration term.
+31: 07.06.2022 21:17:13 The new line is: This is the new line #15
+32: 07.06.2022 21:17:37 GetDate method: date/time in the line # 15 of the log is incorrect
+33: 07.06.2022 21:23:10 Log line # 27 change fulfilled. The old line was: 07.06.2022 17:33:00 There is no line # 29 in the log
+34: 07.06.2022 21:23:10 The new line is: There now IS the line #29
+35: 07.06.2022 21:23:35 GetDate method: date/time in the line # 27 of the log is incorrect
 
 
 Do you want to change a log string? Enter Y or y if yes
 y
-Enter the log line number to change: 29
+Enter the log line number to change: 39
 Enter the new log line:
-Checking the wrong index
-07.06.2022 17.33.00 There is no line # 29 in the log
+1
+07.06.2022 21:34:15 There is no line # 39 in the log
 
 Do you want to change a log string? Enter Y or y if yes
 y
-Enter the log line number to change: 10
+Enter the log line number to change: 25
 Enter the new log line:
-Changing the line 10
-07.06.2022 17.33.19 Log line # 10 change fulfilled. The old line was: 07.06.2022 17.17.24 Error (line 11): Input string was not in a correct format.
-07.06.2022 17.33.19 The new line is:Changing the line 10
+New line is better
+07.06.2022 21:34:33 Log line # 25 change fulfilled. The old line was: 07.06.2022 17:32:44 Error (line 12): Input string was not in a correct format.
+07.06.2022 21:34:33 The new line is: New line is better
 Changed in the memory and appended to the log
 
 Do you want to change a log string? Enter Y or y if yes
 n
+Enter the date/time to show only later records:
+07.06.22 18:00:00
+25: 07.06.2022 21:34:33 New line is better
+30: 07.06.2022 21:17:13 Log line # 15 change fulfilled. The old line was: 07.06.2022 17:18:18 Error (line 13): Not normal expiration term.
+31: 07.06.2022 21:17:13 The new line is: This is the new line #15
+32: 07.06.2022 21:17:37 GetDate method: date/time in the line # 15 of the log is incorrect
+33: 07.06.2022 21:23:10 Log line # 27 change fulfilled. The old line was: 07.06.2022 17:33:00 There is no line # 29 in the log
+34: 07.06.2022 21:23:10 The new line is: There now IS the line #29
+35: 07.06.2022 21:23:35 GetDate method: date/time in the line # 27 of the log is incorrect

@@ -157,6 +157,8 @@ namespace Task_7
         static List<Product> products;
         static public string productsListName = "../../../Database.txt";
 
+        public static Log log = null; // link to the log class instance
+
         public Product this[int index]
         {
             get { return GetProduct(index); }
@@ -306,7 +308,9 @@ namespace Task_7
                 } // try
                 catch (Exception ex)
                 {
-                    Log.PutRecord($"Error (line {currLine}): " + ex.Message);
+                    string message = $"Error (line {currLine}): " + ex.Message;
+                    if (log != null) log.PutRecord(message);
+                    else Console.WriteLine();
                 }
             } // while (!EOF)
         }
@@ -416,7 +420,9 @@ namespace Task_7
             } // try
             catch (Exception ex)
             {
-                Log.PutRecord($"Error (line {s_count}): " + ex.Message);
+                string message = $"Error (line {s_count}): " + ex.Message;
+                if (log != null) log.PutRecord(message);
+                else Console.WriteLine();
             }
         }
 
@@ -454,7 +460,9 @@ namespace Task_7
                 var p = GetProduct(i);
                 if (p == null)
                 {
-                    Log.PutRecord($"Error: The product {i} is empty or the product link is wrong");
+                    string message = $"Error: The product {i} is empty or the product link is wrong";
+                    if (log != null) log.PutRecord(message);
+                    else Console.WriteLine();
                     return "";
                 }
                 result += $"{i + 1}. " + 

@@ -36,7 +36,7 @@ namespace Task_7
                 }
                 catch (Exception ex)
                 {
-                    Log.PutRecord($"Error: " + ex.Message);
+                    log.PutRecord($"Error: " + ex.Message);
                     Console.WriteLine($"Enter new products list name (with path), {tryCount} attempts remained: ");
                     Storage.productsListName = Console.ReadLine();
                     tryCount--;
@@ -44,6 +44,7 @@ namespace Task_7
             } while (tryCount > 0);
 
             Storage storage = new Storage(reader); // reading from the file
+            Storage.log = log;
 
             if (Storage.GetCount() == 0)
             {
@@ -84,6 +85,15 @@ namespace Task_7
                 else
                     break;
             }
+
+            Console.WriteLine("Enter the date/time to show only later records: ");
+            if (!DateTime.TryParse(Console.ReadLine(), out DateTime d))
+            {
+                log.PutRecord($"Date/time is incorrect, showing all records instead");
+                // d = DateTime.MinValue; // not needed in fact, d is already MinValue if TryParse fails
+            }
+            Console.WriteLine(log.ShowByDate(d));
+
             log.Close();
             return 0;
         }
