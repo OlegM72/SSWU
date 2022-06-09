@@ -233,25 +233,23 @@ namespace Task_5
         {
             if (arr == null)
                 return; // some error;
+
+            Pair[] indices = new Pair[GetLength()]; // array of consequitive numbers in pairs with random ¨indices"
+            Random random = new Random();
             
+            // generate pairs with large "indices"
             for (int i = 0; i < GetLength(); i++)
             {
-                arr[i] = 0;
+                indices[i] = new Pair(i + 1, (int)(random.NextDouble()*Int32.MaxValue)); // NextDouble gives numbers 0..1
             }
 
-            Random random = new Random();
-            int x;
+            // pairs are now compared by freqs using IComparable interface so we can sort them by Freqs
+            Array.Sort(indices);
+
+            // now the indices array contains numbers in random order, save them to Vector's array
             for (int i = 0; i < GetLength(); i++)
             {
-                while (arr[i] == 0)
-                {
-                    x = random.Next(1, GetLength() + 1);
-                    if (Array.IndexOf(arr, x) < 0) // x not present
-                    {
-                        arr[i] = x;
-                        break;
-                    }
-                }
+                arr[i] = indices[i].Number;
             }
         }
 
