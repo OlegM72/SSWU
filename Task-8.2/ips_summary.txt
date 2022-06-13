@@ -1,0 +1,35 @@
+1.0.0.1        : count:   4, most popular hour(s) of day: 18, 22, most popular day(s) of week: Tuesday 
+1.1.1.1        : count:   4, most popular hour(s) of day: 8, 13, 17, 22, most popular day(s) of week: Tuesday 
+134.195.4.2    : count:   1, most popular hour(s) of day: 14, most popular day(s) of week: Thursday 
+149.112.112.112: count:   2, most popular hour(s) of day: 11, most popular day(s) of week: Sunday Monday 
+159.89.120.99  : count:   1, most popular hour(s) of day: 13, most popular day(s) of week: Thursday 
+185.228.168.9  : count:   3, most popular hour(s) of day: 19, most popular day(s) of week: Monday Tuesday Wednesday 
+185.228.169.9  : count:   3, most popular hour(s) of day: 8, 19, 20, most popular day(s) of week: Monday Tuesday Wednesday 
+195.46.39.39   : count:   6, most popular hour(s) of day: 11, most popular day(s) of week: Friday 
+195.46.39.40   : count:   4, most popular hour(s) of day: 2, 12, 19, 23, most popular day(s) of week: Friday 
+205.171.2.65   : count:   6, most popular hour(s) of day: 7, 10, 14, 17, 18, 20, most popular day(s) of week: Thursday 
+205.171.3.65   : count:   9, most popular hour(s) of day: 1, 6, 9, 12, 16, 17, 18, 19, 23, most popular day(s) of week: Friday 
+208.67.220.220 : count:   4, most popular hour(s) of day: 5, 13, 14, 22, most popular day(s) of week: Tuesday 
+208.67.222.222 : count:   2, most popular hour(s) of day: 12, most popular day(s) of week: Sunday Monday 
+216.146.35.35  : count:   3, most popular hour(s) of day: 3, 20, 23, most popular day(s) of week: Friday 
+216.146.36.36  : count:   3, most popular hour(s) of day: 0, 4, 20, most popular day(s) of week: Saturday 
+64.6.64.6      : count:   3, most popular hour(s) of day: 8, 15, 22, most popular day(s) of week: Saturday 
+64.6.65.6      : count:   3, most popular hour(s) of day: 9, 18, 22, most popular day(s) of week: Saturday 
+74.82.42.42    : count:   3, most popular hour(s) of day: 7, 14, 21, most popular day(s) of week: Saturday 
+76.223.122.150 : count:   3, most popular hour(s) of day: 10, 20, 22, most popular day(s) of week: Monday Tuesday Wednesday 
+76.76.10.0     : count:   3, most popular hour(s) of day: 11, 21, 23, most popular day(s) of week: Saturday 
+76.76.19.19    : count:   3, most popular hour(s) of day: 9, 19, 21, most popular day(s) of week: Monday Tuesday Wednesday 
+76.76.2.0      : count:   3, most popular hour(s) of day: 10, 19, 22, most popular day(s) of week: Saturday 
+77.88.8.1      : count:   3, most popular hour(s) of day: 6, 13, 21, most popular day(s) of week: Saturday 
+77.88.8.8      : count:   3, most popular hour(s) of day: 5, 12, 21, most popular day(s) of week: Saturday 
+8.20.247.20    : count:   5, most popular hour(s) of day: 5, 15, 16, 17, 21, most popular day(s) of week: Wednesday Thursday 
+8.26.56.26     : count:   3, most popular hour(s) of day: 14, 20, 23, most popular day(s) of week: Wednesday 
+8.8.4.4        : count:   2, most popular hour(s) of day: 3, most popular day(s) of week: Sunday Monday 
+8.8.8.8        : count:   2, most popular hour(s) of day: 1, 2, most popular day(s) of week: Sunday Monday 
+84.200.69.80   : count:   4, most popular hour(s) of day: 13, 19, 21, 23, most popular day(s) of week: Wednesday 
+84.200.70.40   : count:   1, most popular hour(s) of day: 21, most popular day(s) of week: Tuesday 
+9.9.9.9        : count:   2, most popular hour(s) of day: 9, 10, most popular day(s) of week: Sunday Monday 
+94.140.14.14   : count:   5, most popular hour(s) of day: 11, 19, 21, 22, 23, most popular day(s) of week: Wednesday 
+94.140.15.15   : count:   5, most popular hour(s) of day: 23, most popular day(s) of week: Wednesday 
+Total Summary: 33 IPs in the list, total 111 attendings, most popular hour(s) of day: 19, most popular day(s) of week: Friday 
+

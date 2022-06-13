@@ -1,0 +1,12 @@
+* First line: number of flats, number of accounting quarter.
+8 2
+* Next lines: flat number, owner name, previous quarter electricity meter reading, and for each month: 3 monthly readings with taking date
+1 Markov 1210 1300 01.04.22 1400 02.05.22 1520 03.06.22
+2 Pavlov 270 330 11.04.22 440 12.05.22 511 02.06.22
+3 Sidorov 210 300 04.04.22 362 05.05.22 430 05.06.22
+4 Petrov 5100 5201 30.04.22 5321 13.05.22 5403 02.06.22
+5 Ivanov 2101 2188 22.04.22 2301 20.05.22 2518 03.06.22
+6 Novygod 0 121 07.04.22 254 07.05.22 387 09.06.22
+9 Klitschko 89210 91311 05.04.22 93232 07.05.22 95130 01.06.22
+13 Zabiyaka 90 150 04.04.22 225 06.05.22 305 10.06.22
+14 Maltsev 30 130 04.04.22 230 05.05.22 330 08.06.22
