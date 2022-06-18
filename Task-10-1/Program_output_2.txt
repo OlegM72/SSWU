@@ -1,0 +1,14 @@
+The text was read from ../../../Text.txt. Here is the translation:
+
+Введiть замiну для слова to
+
+Введiть замiну для слова to
+<
+Введiть замiну для слова to
+до
+Я йду...  >>> до...    iнтернатури!!
+Введiть замiну для слова Lilia
+Лiлiї
+I перш за все,  Я хочу до подякувати  "Сiгма Программам" i панi Лiлiї за ЦЕЙ курс!
+
+The translation was also written to ../../../Translation.txt

@@ -1,0 +1,9 @@
+The text was read from ../../../Text.txt. Here is the translation:
+
+¬ведiть замiну дл€ слова to
+<
+¬ведiть замiну дл€ слова to
+00
+¬ведiть замiну дл€ слова to
+--
+A word not found in the vocabulary: to
