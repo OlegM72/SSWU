@@ -1,0 +1,165 @@
+
+Enter the number of the action you want:
+1. Print the total price of menu (all dishes in one copy)
+2. Print the list of dishes in menu with prices
+3. Print all dishes in menu with descriptions but without prices
+4. Print the pricecurrent
+5. Print the currency courses
+0. Exit
+
+Your choice: 5
+1 UAH = 1.0 UAH
+1 EUR = 30.85 UAH
+1 USD = 29.54 UAH
+
+
+Enter the number of the action you want:
+1. Print the total price of menu (all dishes in one copy)
+2. Print the list of dishes in menu with prices
+3. Print all dishes in menu with descriptions but without prices
+4. Print the pricecurrent
+5. Print the currency courses
+0. Exit
+
+Your choice: 4
+Цибуля-порей - 171.70 UAH for 1 kg
+Цибуля - 18.99 UAH for 1 kg
+Груша - 79.90 UAH for 1 kg
+Гриби бiлi - 59.40 UAH for 1 kg
+Масло вершкове - 139 UAH for 1 kg
+Горiхi грецькi - 300 UAH for 1 kg
+Сiль мелена екстра - 34.49 UAH for 1 kg
+Салат зелений - 69.20 UAH for 1 kg
+Вершки 15% - 23.59 UAH for 1 kg
+Лимон - 59.40 UAH for 1 kg
+Вино бiле сухе - 84.50 UAH for 1 kg
+Брезаола - 585 UAH for 1 kg
+Прошуто з Парми - 1300 UAH for 1 kg
+Рукола - 149.80 UAH for 1 kg
+Бульйон рибний - 380 UAH for 1 kg
+Бульйон овочевий - 309 UAH for 1 kg
+Карi - 125 UAH for 1 kg
+Пармезан - 424 UAH for 1 kg
+Радиччо червоний - 540 UAH for 1 kg
+Перець чорний мелений - 108 UAH for 1 kg
+Петрушка - 194.80 UAH for 1 kg
+Рис карнаролi - 109 UAH for 1 kg
+Корiнь селери - 52 UAH for 1 kg
+Борошно - 20.50 UAH for 1 kg
+Коньяк - 260 UAH for 1 kg
+Часник - 129 UAH for 1 kg
+Оцет бальзамiчний або з бiлого вина - 456 UAH for 1 kg
+Шерi - 334 UAH for 1 kg
+Олiя оливкова - 354 UAH for 1 kg
+Омар - 1390 UAH for 1 kg
+
+
+Enter the number of the action you want:
+1. Print the total price of menu (all dishes in one copy)
+2. Print the list of dishes in menu with prices
+3. Print all dishes in menu with descriptions but without prices
+4. Print the pricecurrent
+5. Print the currency courses
+0. Exit
+
+Your choice: 3
+Dish: Карпаччо iз брезаоли i руколи
+  Брезаола - 100 grams
+  Олiя оливкова - 30 grams
+  Лимон - 75 grams
+  Рукола - 25 grams
+  Пармезан - 40 grams
+  Перець чорний мелений - 5 grams
+
+Dish: Антипаста iз прошутто i радиччо
+  Прошуто з Парми - 60 grams
+  Радиччо червоний - 30 grams
+  Лимон - 150 grams
+  Пармезан - 50 grams
+  Олiя оливкова - 50 grams
+  Перець чорний мелений - 5 grams
+  Сiль мелена екстра - 5 grams
+  Петрушка - 25 grams
+
+Dish: Салат вегетарiанський лiтнiй iз грушею та горiхами
+  Груша - 200 grams
+  Масло вершкове - 30 grams
+  Горiхi грецькi - 50 grams
+  Салат зелений - 150 grams
+  Оцет бальзамiчний або з бiлого вина - 30 grams
+  Олiя оливкова - 40 grams
+  Перець чорний мелений - 5 grams
+  Сiль мелена екстра - 5 grams
+
+Dish: Суп з омара iз карi
+  Омар - 800 grams
+  Бульйон рибний - 1000 grams
+  Морква - 120 grams
+  Цибуля-порей - 70 grams
+  Корiнь селери - 200 grams
+  Масло вершкове - 120 grams
+  Борошно - 50 grams
+  Коньяк - 50 grams
+  Шерi - 100 grams
+  Вершки 15% - 70 grams
+  Карi - 5 grams
+  Перець чорний мелений - 5 grams
+  Сiль мелена екстра - 5 grams
+  Петрушка - 5 grams
+
+Dish: Рiзото з бiлими грибами
+  Гриби бiлi - 400 grams
+  Рис карнаролi - 320 grams
+  Масло вершкове - 60 grams
+  Олiя оливкова - 30 grams
+  Цибуля - 100 grams
+  Часник - 3 grams
+  Вино бiле сухе - 100 grams
+  Петрушка - 20 grams
+  Пармезан - 50 grams
+  Бульйон овочевий - 1000 grams
+  Перець чорний мелений - 5 grams
+  Сiль мелена екстра - 5 grams
+
+
+
+
+Enter the number of the action you want:
+1. Print the total price of menu (all dishes in one copy)
+2. Print the list of dishes in menu with prices
+3. Print all dishes in menu with descriptions but without prices
+4. Print the pricecurrent
+5. Print the currency courses
+0. Exit
+
+Your choice: 1
+Enter price for the product: Морква
+25.89
+The total price of the menu is 2325.23 UAH
+
+Enter the number of the action you want:
+1. Print the total price of menu (all dishes in one copy)
+2. Print the list of dishes in menu with prices
+3. Print all dishes in menu with descriptions but without prices
+4. Print the pricecurrent
+5. Print the currency courses
+0. Exit
+
+Your choice: 2
+Карпаччо iз брезаоли i руколи -- 94.82 UAH
+Антипаста iз прошутто i радиччо -- 147.59 UAH
+Салат вегетарiанський лiтнiй iз грушею та горiхами -- 74.08 UAH
+Суп з омара iз карi -- 1585.59 UAH
+Рiзото з бiлими грибами -- 423.14 UAH
+
+The total price of the menu is 2325.23 UAH
+
+Enter the number of the action you want:
+1. Print the total price of menu (all dishes in one copy)
+2. Print the list of dishes in menu with prices
+3. Print all dishes in menu with descriptions but without prices
+4. Print the pricecurrent
+5. Print the currency courses
+0. Exit
+
+Your choice: 0
