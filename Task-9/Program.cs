@@ -30,7 +30,7 @@ namespace Task_9
                                       "2. Print the list of dishes in menu with prices\r\n" +
                                       "3. Print all dishes in menu with descriptions but without prices\r\n" +
                                       "4. Print the pricecurrent\r\n" +
-                                      "5. Print the currency courses\r\n" +
+                                      "5. Print the exchange rates\r\n" +
                                       "6. Change the currency (the current currency is " + Course.currentCurrency +")\r\n" +
                                       "0. Exit\r\n");
                     Console.Write("Your choice: ");
