@@ -5,6 +5,7 @@ Enter the number of the action you want:
 3. Print all dishes in menu with descriptions but without prices
 4. Print the pricecurrent
 5. Print the currency courses
+6. Change the currency (the current currency is UAH)
 0. Exit
 
 Your choice: 5
@@ -19,47 +20,7 @@ Enter the number of the action you want:
 3. Print all dishes in menu with descriptions but without prices
 4. Print the pricecurrent
 5. Print the currency courses
-0. Exit
-
-Your choice: 4
-Цибуля-порей - 171.70 UAH for 1 kg
-Цибуля - 18.99 UAH for 1 kg
-Груша - 79.90 UAH for 1 kg
-Гриби бiлi - 59.40 UAH for 1 kg
-Масло вершкове - 139 UAH for 1 kg
-Горiхi грецькi - 300 UAH for 1 kg
-Сiль мелена екстра - 34.49 UAH for 1 kg
-Салат зелений - 69.20 UAH for 1 kg
-Вершки 15% - 23.59 UAH for 1 kg
-Лимон - 59.40 UAH for 1 kg
-Вино бiле сухе - 84.50 UAH for 1 kg
-Брезаола - 585 UAH for 1 kg
-Прошуто з Парми - 1300 UAH for 1 kg
-Рукола - 149.80 UAH for 1 kg
-Бульйон рибний - 380 UAH for 1 kg
-Бульйон овочевий - 309 UAH for 1 kg
-Карi - 125 UAH for 1 kg
-Пармезан - 424 UAH for 1 kg
-Радиччо червоний - 540 UAH for 1 kg
-Перець чорний мелений - 108 UAH for 1 kg
-Петрушка - 194.80 UAH for 1 kg
-Рис карнаролi - 109 UAH for 1 kg
-Корiнь селери - 52 UAH for 1 kg
-Борошно - 20.50 UAH for 1 kg
-Коньяк - 260 UAH for 1 kg
-Часник - 129 UAH for 1 kg
-Оцет бальзамiчний або з бiлого вина - 456 UAH for 1 kg
-Шерi - 334 UAH for 1 kg
-Олiя оливкова - 354 UAH for 1 kg
-Омар - 1390 UAH for 1 kg
-
-
-Enter the number of the action you want:
-1. Print the total price of menu (all dishes in one copy)
-2. Print the list of dishes in menu with prices
-3. Print all dishes in menu with descriptions but without prices
-4. Print the pricecurrent
-5. Print the currency courses
+6. Change the currency (the current currency is UAH)
 0. Exit
 
 Your choice: 3
@@ -130,12 +91,110 @@ Enter the number of the action you want:
 3. Print all dishes in menu with descriptions but without prices
 4. Print the pricecurrent
 5. Print the currency courses
+6. Change the currency (the current currency is UAH)
+0. Exit
+
+Your choice: 4
+1 kg of Цибуля-порей costs 171.70 UAH
+1 kg of Цибуля costs 18.99 UAH
+1 kg of Груша costs 79.90 UAH
+1 kg of Гриби бiлi costs 59.40 UAH
+1 kg of Масло вершкове costs 139.00 UAH
+1 kg of Горiхi грецькi costs 300.00 UAH
+1 kg of Сiль мелена екстра costs 34.49 UAH
+1 kg of Салат зелений costs 69.20 UAH
+1 kg of Вершки 15% costs 23.59 UAH
+1 kg of Лимон costs 59.40 UAH
+1 kg of Вино бiле сухе costs 84.50 UAH
+1 kg of Брезаола costs 585.00 UAH
+1 kg of Прошуто з Парми costs 1300.00 UAH
+1 kg of Рукола costs 149.80 UAH
+1 kg of Бульйон рибний costs 380.00 UAH
+1 kg of Бульйон овочевий costs 309.00 UAH
+1 kg of Карi costs 125.00 UAH
+1 kg of Пармезан costs 424.00 UAH
+1 kg of Радиччо червоний costs 540.00 UAH
+1 kg of Перець чорний мелений costs 108.00 UAH
+1 kg of Петрушка costs 194.80 UAH
+1 kg of Рис карнаролi costs 109.00 UAH
+1 kg of Корiнь селери costs 52.00 UAH
+1 kg of Борошно costs 20.50 UAH
+1 kg of Коньяк costs 260.00 UAH
+1 kg of Часник costs 129.00 UAH
+1 kg of Оцет бальзамiчний або з бiлого вина costs 456.00 UAH
+1 kg of Шерi costs 334.00 UAH
+1 kg of Олiя оливкова costs 354.00 UAH
+1 kg of Омар costs 1390.00 UAH
+
+
+Enter the number of the action you want:
+1. Print the total price of menu (all dishes in one copy)
+2. Print the list of dishes in menu with prices
+3. Print all dishes in menu with descriptions but without prices
+4. Print the pricecurrent
+5. Print the currency courses
+6. Change the currency (the current currency is UAH)
+0. Exit
+
+Your choice: 6
+Enter the new current currency (1 = UAH, 2 = USD, 3 = EUR): 2
+Current currency is: USD
+
+Enter the number of the action you want:
+1. Print the total price of menu (all dishes in one copy)
+2. Print the list of dishes in menu with prices
+3. Print all dishes in menu with descriptions but without prices
+4. Print the pricecurrent
+5. Print the currency courses
+6. Change the currency (the current currency is USD)
+0. Exit
+
+Your choice: 4
+1 kg of Цибуля-порей costs 5.81 USD
+1 kg of Цибуля costs 0.64 USD
+1 kg of Груша costs 2.70 USD
+1 kg of Гриби бiлi costs 2.01 USD
+1 kg of Масло вершкове costs 4.71 USD
+1 kg of Горiхi грецькi costs 10.16 USD
+1 kg of Сiль мелена екстра costs 1.17 USD
+1 kg of Салат зелений costs 2.34 USD
+1 kg of Вершки 15% costs 0.80 USD
+1 kg of Лимон costs 2.01 USD
+1 kg of Вино бiле сухе costs 2.86 USD
+1 kg of Брезаола costs 19.80 USD
+1 kg of Прошуто з Парми costs 44.01 USD
+1 kg of Рукола costs 5.07 USD
+1 kg of Бульйон рибний costs 12.86 USD
+1 kg of Бульйон овочевий costs 10.46 USD
+1 kg of Карi costs 4.23 USD
+1 kg of Пармезан costs 14.35 USD
+1 kg of Радиччо червоний costs 18.28 USD
+1 kg of Перець чорний мелений costs 3.66 USD
+1 kg of Петрушка costs 6.59 USD
+1 kg of Рис карнаролi costs 3.69 USD
+1 kg of Корiнь селери costs 1.76 USD
+1 kg of Борошно costs 0.69 USD
+1 kg of Коньяк costs 8.80 USD
+1 kg of Часник costs 4.37 USD
+1 kg of Оцет бальзамiчний або з бiлого вина costs 15.44 USD
+1 kg of Шерi costs 11.31 USD
+1 kg of Олiя оливкова costs 11.98 USD
+1 kg of Омар costs 47.05 USD
+
+
+Enter the number of the action you want:
+1. Print the total price of menu (all dishes in one copy)
+2. Print the list of dishes in menu with prices
+3. Print all dishes in menu with descriptions but without prices
+4. Print the pricecurrent
+5. Print the currency courses
+6. Change the currency (the current currency is USD)
 0. Exit
 
 Your choice: 1
-Enter price for the product: Морква
+Enter price (in UAH) for the product: Морква
 25.89
-The total price of the menu is 2325.23 UAH
+The total price of the menu is 78.71 USD
 
 Enter the number of the action you want:
 1. Print the total price of menu (all dishes in one copy)
@@ -143,16 +202,17 @@ Enter the number of the action you want:
 3. Print all dishes in menu with descriptions but without prices
 4. Print the pricecurrent
 5. Print the currency courses
+6. Change the currency (the current currency is USD)
 0. Exit
 
 Your choice: 2
-Карпаччо iз брезаоли i руколи -- 94.82 UAH
-Антипаста iз прошутто i радиччо -- 147.59 UAH
-Салат вегетарiанський лiтнiй iз грушею та горiхами -- 74.08 UAH
-Суп з омара iз карi -- 1585.59 UAH
-Рiзото з бiлими грибами -- 423.14 UAH
+Карпаччо iз брезаоли i руколи -- 3.21 USD
+Антипаста iз прошутто i радиччо -- 5.00 USD
+Салат вегетарiанський лiтнiй iз грушею та горiхами -- 2.51 USD
+Суп з омара iз карi -- 53.68 USD
+Рiзото з бiлими грибами -- 14.32 USD
 
-The total price of the menu is 2325.23 UAH
+The total price of the menu is 78.71 USD
 
 Enter the number of the action you want:
 1. Print the total price of menu (all dishes in one copy)
@@ -160,6 +220,38 @@ Enter the number of the action you want:
 3. Print all dishes in menu with descriptions but without prices
 4. Print the pricecurrent
 5. Print the currency courses
+6. Change the currency (the current currency is USD)
+0. Exit
+
+Your choice: 6
+Enter the new current currency (1 = UAH, 2 = USD, 3 = EUR): 3
+Current currency is: EUR
+
+Enter the number of the action you want:
+1. Print the total price of menu (all dishes in one copy)
+2. Print the list of dishes in menu with prices
+3. Print all dishes in menu with descriptions but without prices
+4. Print the pricecurrent
+5. Print the currency courses
+6. Change the currency (the current currency is EUR)
+0. Exit
+
+Your choice: 2
+Карпаччо iз брезаоли i руколи -- 3.07 EUR
+Антипаста iз прошутто i радиччо -- 4.78 EUR
+Салат вегетарiанський лiтнiй iз грушею та горiхами -- 2.40 EUR
+Суп з омара iз карi -- 51.40 EUR
+Рiзото з бiлими грибами -- 13.72 EUR
+
+The total price of the menu is 75.37 EUR
+
+Enter the number of the action you want:
+1. Print the total price of menu (all dishes in one copy)
+2. Print the list of dishes in menu with prices
+3. Print all dishes in menu with descriptions but without prices
+4. Print the pricecurrent
+5. Print the currency courses
+6. Change the currency (the current currency is EUR)
 0. Exit
 
 Your choice: 0

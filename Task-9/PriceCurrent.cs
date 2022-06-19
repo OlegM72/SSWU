@@ -61,7 +61,7 @@ namespace Task_9
             // appending to the file
             using (StreamWriter writer = new(currentFileName, true, Encoding.UTF8)) // append mode
             {
-                writer.WriteLine($"{productName}, {price:f2}");
+                writer.WriteLine($"{productName} - {price:f2}");
             }
         }
 
@@ -79,7 +79,7 @@ namespace Task_9
             }
             catch (ProductNotFound ex)
             {
-                Console.WriteLine("Enter price for the product: " + ex.GetProductName());
+                Console.WriteLine("Enter price (in UAH) for the product: " + ex.GetProductName());
                 bool OK = decimal.TryParse(Console.ReadLine(), out decimal productPrice);
                 if (!OK)
                     throw; // go to the Main method to terminate the program
@@ -89,12 +89,27 @@ namespace Task_9
             }
         }
 
-        public override string ToString()
+        public string PrintPrices(Course course)
         {
             string result = "";
             foreach (KeyValuePair<string, decimal> product in _productPrices)
             {
-                result += $"{product.Key} - {product.Value} UAH for 1 kg\r\n";
+                // this is internal function
+                result += 
+                    ($"1 kg of {product.Key} costs " + 
+                     $"{(product.Value / course.GetCourse(Course.currentCurrency)):f2} {Course.currentCurrency}\r\n");
+            }
+            return result;
+        }
+
+
+        public override string ToString() // out the prices of the products in UAH
+        {
+            string result = "";
+            foreach (KeyValuePair<string, decimal> product in _productPrices)
+            {
+                // this is internal function
+                result += $"1 kg of {product.Key} costs {product.Value} UAH\r\n";
             }
             return result;
         }

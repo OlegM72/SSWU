@@ -31,9 +31,10 @@ namespace Task_9
                                       "3. Print all dishes in menu with descriptions but without prices\r\n" +
                                       "4. Print the pricecurrent\r\n" +
                                       "5. Print the currency courses\r\n" +
+                                      "6. Change the currency (the current currency is " + Course.currentCurrency +")\r\n" +
                                       "0. Exit\r\n");
                     Console.Write("Your choice: ");
-                    if (!Int32.TryParse(Console.ReadLine(), out respond) || respond < 0 || respond > 5)
+                    if (!Int32.TryParse(Console.ReadLine(), out respond) || respond < 0 || respond > 6)
                     {
                         Console.WriteLine("Incorrect action number!");
                         continue;
@@ -45,11 +46,11 @@ namespace Task_9
                             {
                                 try
                                 {
-                                    if (!MenuService.TryGetMenuTotalSum(menu, priceCurrent, out decimal menuPrice))
+                                    if (!MenuService.TryGetMenuTotalSum(menu, priceCurrent, course, out decimal menuPrice))
                                         Console.WriteLine("Cannot calculate the total price of the menu.");
                                     else
                                     {
-                                        string result = $"The total price of the menu is {menuPrice:f2} UAH";
+                                        string result = $"The total price of the menu is {menuPrice:f2} {Course.currentCurrency}";
                                         Console.WriteLine(result);
                                         using (StreamWriter writer = new(resultFileName, false, Encoding.UTF8))
                                         {
@@ -68,13 +69,13 @@ namespace Task_9
                             {
                                 try
                                 {
-                                    string dishesList = MenuService.PrintListOfDishesWithPrices(menu, priceCurrent, out decimal menuPrice);
+                                    string dishesList = MenuService.PrintListOfDishesWithPrices(menu, priceCurrent, course, out decimal menuPrice);
                                     if (dishesList == "")
                                         Console.WriteLine("Cannot calculate the total price of the menu, or some error occured");
                                     else
                                     {
                                         Console.WriteLine(dishesList);
-                                        string result = $"The total price of the menu is {menuPrice:f2} UAH";
+                                        string result = $"The total price of the menu is {menuPrice:f2} {Course.currentCurrency}";
                                         Console.WriteLine(result);
                                         using (StreamWriter writer = new(resultFileName, false, Encoding.UTF8))
                                         {
@@ -91,8 +92,22 @@ namespace Task_9
                                 break;
                             }
                         case 3: { Console.WriteLine(menu); break; }
-                        case 4: { Console.WriteLine(priceCurrent); break; }
+                        case 4: { Console.WriteLine(priceCurrent.PrintPrices(course)); break; }
                         case 5: { Console.WriteLine(course); break; }
+                        case 6: 
+                            {
+                                int curr = (int)Course.currentCurrency;
+                                Console.Write("Enter the new current currency (1 = UAH, 2 = USD, 3 = EUR): ");
+                                if (!Int32.TryParse(Console.ReadLine(), out curr) || curr < 1 || curr > 3)
+                                    Console.WriteLine("Incorrect currency number! The currency was not changed");
+                                else
+                                {
+                                    Course.currentCurrency = (Course.Currency)(curr - 1);
+                                    Console.WriteLine("Current currency is: " + Course.currentCurrency);
+                                }
+                                break; 
+                            }
+                        default: continue; // not needed in fact
                     }
                 }
                 while (true) ;

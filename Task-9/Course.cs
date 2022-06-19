@@ -14,6 +14,7 @@ namespace Task_9
             EUR = 2
         }
 
+        public static Currency currentCurrency = Currency.UAH;
         Dictionary<Currency, decimal> _courses; // Pairs of currency and price for 1 unit of money
 
         public Course()
