@@ -1,7 +1,1 @@
-﻿Карпаччо iз брезаоли i руколи -- 3.07 EUR
-Антипаста iз прошутто i радиччо -- 4.78 EUR
-Салат вегетарiанський лiтнiй iз грушею та горiхами -- 2.40 EUR
-Суп з омара iз карi -- 51.40 EUR
-Рiзото з бiлими грибами -- 13.72 EUR
-
-The total price of the menu is 75.37 EUR
+﻿The total price of the menu is 78.71 USD
