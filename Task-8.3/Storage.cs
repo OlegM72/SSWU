@@ -178,7 +178,7 @@ namespace Task_8_3
         decimal s_TotalWeight;
 
         List<Product> products;
-                
+
         public Storage() // створення порожнього складу
         {
             products = new List<Product>();
@@ -290,7 +290,7 @@ namespace Task_8_3
 
         public Product this[int index]
         {
-            get { 
+            get {
                 return GetProduct(index); // index is checked in the method
             }
             set {
@@ -312,7 +312,7 @@ namespace Task_8_3
             Console.WriteLine(message); // can be changed
         }
 
-        public Storage Union(Storage storage2) // return a Storage with all elements in two storages (each appears once)
+       private Storage Union(Storage storage2) // return a Storage with all elements in two storages (each appears once)
         {
             ProductComparer comparer = new();
             SortedSet<Product> sortedProducts = new(comparer); // a SortedSet includes each element only once
@@ -344,7 +344,7 @@ namespace Task_8_3
             return result;
         }
 
-        public Storage Subtract(Storage storage2) // return a Storage without the elements in the second storage
+        private Storage Subtract(Storage storage2) // return a Storage without the elements in the second storage
         {
             decimal totalPrice = s_TotalPrice;
             decimal totalWeight = s_TotalWeight;
@@ -376,7 +376,7 @@ namespace Task_8_3
             return result;
         }
 
-        public Storage Intersect(Storage storage2) // return a Storage with common elements in two storages
+        private Storage Intersect(Storage storage2) // return a Storage with common elements in two storages
         {
             decimal totalPrice = s_TotalPrice;
             decimal totalWeight = s_TotalWeight;
@@ -450,6 +450,21 @@ namespace Task_8_3
                     ((p is Meat) ? (p as Meat).ToString() : (p as Dairy_products).ToString()) + "\r\n";
             }
             return result + $"TOTAL: {GetTotalWeight()} kg, {GetTotalPrice()} UAH, meat: {GetMeatCount()} pieces";
+        }
+
+        public static Storage operator +(Storage storage1, Storage storage2)
+        {
+            return storage1.Union(storage2);
+        }
+
+        public static Storage operator -(Storage storage1, Storage storage2)
+        {
+            return storage1.Subtract(storage2);
+        }
+
+        public static Storage operator *(Storage storage1, Storage storage2)
+        {
+            return storage1.Intersect(storage2);
         }
     }
 }

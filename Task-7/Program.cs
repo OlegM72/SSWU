@@ -94,7 +94,6 @@ namespace Task_7
             }
             Console.WriteLine(log.ShowByDate(d));
 
-            log.Close();
             return 0;
         }
     }

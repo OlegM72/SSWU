@@ -11,25 +11,13 @@ namespace Task_8_2
             string resultFileName1 = "../../../all_attendings.txt";
             string resultFileName2 = "../../../ips_summary.txt";
 
-            StreamReader source = new StreamReader(sourceFileName);
-            Console.WriteLine("Reading the IP list from " + sourceFileName);
-            IPCollection ip = new(source);
-            source.Close();
-
-            Console.WriteLine("The list was read. This is the summary on all IPs:");
-            Console.WriteLine(ip);
-
-            StreamWriter result = new StreamWriter(resultFileName1);
-            result.WriteLine(ip);
-            result.Close();
-            Console.WriteLine("The report was also written to " + resultFileName1);
-
-            Console.WriteLine("This is the summary of the most popular hours / days:");
-            Console.WriteLine(ip.PrintIPsSummary());
-            result = new StreamWriter(resultFileName2);
-            result.WriteLine(ip.PrintIPsSummary());
-            result.Close();
-            Console.WriteLine("The summary was also written to " + resultFileName2);
+            try { IPCollection.Dialog(sourceFileName, resultFileName1, resultFileName2); }
+            catch (Exception ex) when (ex.Message != null)
+            {
+                Console.BackgroundColor = ConsoleColor.Red;
+                Console.WriteLine(ex.Message);
+                Console.ResetColor();
+            }
         }
     }
 }

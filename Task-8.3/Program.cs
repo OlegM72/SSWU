@@ -55,13 +55,13 @@ namespace Task_8_3
             }
 
             Console.WriteLine("\r\nList of all products in two storages (each appears once):");
-            Console.WriteLine(storage1.Union(storage2));
+            Console.WriteLine(storage1 + storage2);
 
             Console.WriteLine("\r\nList of all products in the first storage without the elements in the second storage:");
-            Console.WriteLine(storage1.Subtract(storage2));
+            Console.WriteLine(storage1 - storage2);
 
             Console.WriteLine("\r\nList of all common products in two storages:");
-            Console.WriteLine(storage1.Intersect(storage2));
+            Console.WriteLine(storage1 * storage2);
 
         }
     }

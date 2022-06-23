@@ -6,7 +6,7 @@ namespace Task_7
 {
     public class Log // error logging subsystem
     {
-        public static StreamWriter errorLog;
+        // public static StreamWriter errorLog;
         public static string errorLogName = "../../../ErrorLog.txt";
 
         private List<string> text = null;
@@ -14,33 +14,21 @@ namespace Task_7
         public Log(string fileName) // open fileName for writing
         {
             errorLogName = fileName;
-            try
-            {
-                errorLog = new StreamWriter(errorLogName, true); // open for appending (if not exists, creating)
-            }
-            catch
-            {
-                throw; // catch it again in the Main routine
-            }
-            // finally { Close(); }
         }
 
         public void ReadLog() // reading the log to the text lines collection
         {
             if (text != null && text.Count > 0)
-                text.Clear();
+                Clear();
             else
                 text = new List<string>();
 
-            Close(); // close log temporarily
-            StreamReader reader = new StreamReader(errorLogName);
-            while (!reader.EndOfStream)
-            {
-                string line = reader.ReadLine();
-                text.Add(line);
-            }
-            reader.Close();
-            errorLog = new StreamWriter(errorLogName, true); // open for appending again
+            using (StreamReader reader = new StreamReader(errorLogName))
+                while (!reader.EndOfStream)
+                {
+                    string line = reader.ReadLine();
+                    text.Add(line);
+                }
         }
 
         public DateTime GetDate(int index) // convert the date in the beginning of line # index to DateTime
@@ -104,9 +92,8 @@ namespace Task_7
             return true;
         }
 
-        public void Close() // close the underlying stream
+        public void Clear()
         {
-            errorLog.Close();
             text.Clear();
         }
 
@@ -114,13 +101,24 @@ namespace Task_7
         {
             DateTime d = DateTime.Now;
             string line = $"{d:dd.MM.yyyy HH:mm:ss} " + logString;
-            errorLog.WriteLine(line);
+            AppendRecord(line); // write to the log file
             // additionally show on the screen - can be changed
             Console.WriteLine(line);
-            // we will not add to the memory lines ("text") to avoid cycling if PurRecord is called in the cycle
+            // we will not add to the memory lines ("text") to avoid cycling if PutRecord is called in the cycle
             // if (text != null || text.Count > 0) text.Add(line);
         }
 
-
+        public void AppendRecord(string line) // add one line to the log file
+        {
+            try
+            {
+                using (StreamWriter errorLog = new(errorLogName, true)) // open for appending (if not exists, creating)
+                    errorLog.WriteLine(line);
+            }
+            catch
+            {
+                throw; // catch it in the Main routine
+            }
+        }
     }
 }
