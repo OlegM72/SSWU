@@ -78,68 +78,96 @@ namespace Task_5
         {
             try
             {
-                StreamReader reader = new StreamReader(readFileName);
-
-                // Count the number of lines (numbers) in the file
-                int streamSize = 0;
-                while (!reader.EndOfStream)
+                using (StreamReader reader = new StreamReader(readFileName))
                 {
-                    reader.ReadLine();
-                    streamSize++;
+                    // Count the number of lines (numbers) in the file
+                    int streamSize = (File.ReadAllLines(readFileName)).Length;
+
+                    // We can work only with half-sized arrays
+                    int half1Size = streamSize - (streamSize / 2);
+
+                    // reading the first half of the file and saving it to the first partial file
+                    // it would be more efficient to read, SORT and save,
+                    // but I want to have these functions separately for convenience
+                    int i = 0;
+                    StreamReader stream = new StreamReader(readFileName);
+                    using (StreamWriter writer = new StreamWriter(part1FileName))
+                    {
+                        while (i < half1Size)
+                        {
+                            string line = reader.ReadLine();
+                            int curr;
+                            if (line == null || !int.TryParse(line, out curr))
+                            {
+                                throw new ArgumentException();
+                            }
+                            else
+                            {
+                                writer.WriteLine(curr);
+                                i++;
+                            }
+                        }
+                    }
+                    // reading the second half of the file and saving it to the second partial file
+                    using (StreamWriter writer = new StreamWriter(part2FileName))
+                    {
+                        while (!reader.EndOfStream)
+                        {
+                            string line = reader.ReadLine();
+                            int curr;
+                            if (line == null || !int.TryParse(line, out curr))
+                            {
+                                throw new ArgumentException();
+                            }
+                            else
+                            {
+                                writer.WriteLine(curr);
+                                i++;
+                            }
+                        }
+                    }
+                    size = i;
                 }
+            }
+            catch
+            {
+                size = 0;
+                arr = null;
+                throw;
+            }
+            arr = null; // all the data are in the files
+        }
 
-                // We can work only with half-sized arrays
-                int half1Size = streamSize - (streamSize / 2);
-
-                // reading the first half of the file and saving it to the first partial file
-                // it would be more efficient to read, SORT and save,
-                // but I want to have these functions separately for convenience
-                reader.Close();
-                reader = new StreamReader(readFileName); // reopening
-                StreamWriter writer = new StreamWriter(part1FileName);
+        public void ReadPart(StreamReader reader, int linesCount) // reading linesCount lines from the file to the current vector
+		{
+            if (linesCount <= 0)
+                throw new ArgumentException("Wrong number of lines to read");
+            try
+            {
+                arr = new int[linesCount];
                 int i = 0;
-                while (i < half1Size)
+                while (i < linesCount && !reader.EndOfStream)
                 {
                     string line = reader.ReadLine();
                     int curr;
                     if (line == null || !int.TryParse(line, out curr))
                     {
-                        throw new ArgumentException();
+                        throw new FormatException($"Cannot read the file or a number format error, line #{i+1}");
                     }
                     else
                     {
-                        writer.WriteLine(curr);
-                        i++;
-                    }
-                }
-
-                // reading the second half of the file and saving it to the second partial file
-                writer.Close();
-                writer = new StreamWriter(part2FileName);
-                while (!reader.EndOfStream)
-                {
-                    string line = reader.ReadLine();
-                    int curr;
-                    if (line == null || !int.TryParse(line, out curr))
-                    {
-                        throw new ArgumentException();
-                    }
-                    else
-                    {
-                        writer.WriteLine(curr);
+                        arr[i] = curr;
                         i++;
                     }
                 }
                 size = i;
-                writer.Close();
-                reader.Close();
             }
-            catch (Exception ex)
+            catch
             {
-                Console.WriteLine(ex.Message);
                 size = 0;
+                arr = null;
+                throw;
             }
-            arr = null; // all the data are in the files
         }
 
         public bool SaveToFile(string fileName) // fully saving the array to the text file, 1 line per number
@@ -147,12 +175,13 @@ namespace Task_5
         {
             try
             {
-                StreamWriter writer = new StreamWriter(fileName);
-                for (int i = 0; i < GetLength(); i++)
+                using (StreamWriter writer = new StreamWriter(fileName))
                 {
-                    writer.WriteLine(arr[i]);
+                    for (int i = 0; i < GetLength(); i++)
+                    {
+                        writer.WriteLine(arr[i]);
+                    }
                 }
-                writer.Close();
                 return true;
             }
             catch (Exception ex)
@@ -166,24 +195,9 @@ namespace Task_5
         {
             try
             {
-                StreamReader stream = new StreamReader(fileName);
-
                 // reading the file to find its size
-                int streamSize = 0;
-                while (!stream.EndOfStream)
-                {
-                    string line = stream.ReadLine();
-                    int curr;
-                    if (line == null || !int.TryParse(line, out curr))
-                    {
-                        throw new ArgumentException();
-                    }
-                    else
-                    {
-                        streamSize++;
-                    }
-                }
-
+                int streamSize = (File.ReadAllLines(fileName)).Length;
+                
                 size = streamSize;
                 // initializing the array of the Vector
                 arr = new int[size];
@@ -193,30 +207,30 @@ namespace Task_5
                 }
 
                 // reading again the file to the array arr
-                stream.Close();
-                stream = new StreamReader(fileName); // reopening
-                int i = 0;
-                while (!stream.EndOfStream)
+                using (StreamReader stream = new StreamReader(fileName))
                 {
-                    string line = stream.ReadLine();
-                    int curr;
-                    if (line == null || !int.TryParse(line, out curr))
+                    int i = 0;
+                    while (!stream.EndOfStream)
                     {
-                        throw new ArgumentException();
-                    }
-                    else
-                    {
-                        arr[i] = curr;
-                        i++;
+                        string line = stream.ReadLine();
+                        int curr;
+                        if (line == null || !int.TryParse(line, out curr))
+                        {
+                            throw new ArgumentException();
+                        }
+                        else
+                        {
+                            arr[i] = curr;
+                            i++;
+                        }
                     }
                 }
-                stream.Close();
             }
-            catch (Exception ex)
+            catch
             {
-                Console.WriteLine(ex.Message);
                 arr = null;
                 size = 0;
+                throw;
             }
         }
 
@@ -269,87 +283,177 @@ namespace Task_5
             MergeFiles(part1FileName, part2FileName, sortedFileName); // merging two sorted files
         }
 
-        // merging two sorted files into bigger sorted file
-        public void MergeFiles(string part1FileName, string part2FileName, string sortedFileName)
+        public void MergeSortedFileWithMemory(string part1FileName, string sortedFileName)
+        // NEW method of merging a sorted file with a current vector from memory into a bigger sorted file
         {
-            StreamReader reader1 = new StreamReader(part1FileName);
-            StreamReader reader2 = new StreamReader(part2FileName);
-            StreamWriter writer = new StreamWriter(sortedFileName);
-            bool read1 = true; // true if we need to read the next value from the file 1
-            bool read2 = true; // true if we need to read the next value from the file 2
-            int curr1 = -1; // the number read last from reader1
-            int curr2 = -1; // the number read last from reader2
-            string line1 = null;
-            string line2 = null;
-            do
+            try
             {
-                if (read1 && !reader1.EndOfStream)
+                using (StreamReader reader = new StreamReader(part1FileName))
+                using (StreamWriter writer = new StreamWriter(sortedFileName))
                 {
-                    line1 = reader1.ReadLine();
-                    if (line1 == null || !int.TryParse(line1, out curr1))
+                    bool read1 = true; // true if we need to read the next value from the file 1
+                    bool read2 = true; // true if we need to read the next value from the file 2
+                    int curr1 = -1; // the number read last from reader1
+                    int curr2 = -1; // the number read last from reader2
+                    string line1 = null;
+                    int index2 = 0;
+                    do
                     {
-                        line1 = null;
-                        throw new ArgumentException();
-                    }
-                }
-                if (read2 && !reader2.EndOfStream)
-                {
-                    line2 = reader2.ReadLine();
-                    if (line2 == null || !int.TryParse(line2, out curr2))
-                    {
-                        line2 = null;
-                        throw new ArgumentException();
-                    }
-                }
+                        if (read1 && !reader.EndOfStream)
+                        {
+                            line1 = reader.ReadLine();
+                            if (line1 == null || !int.TryParse(line1, out curr1))
+                            {
+                                line1 = null;
+                                throw new FormatException("Cannot read the file or a number format error");
+                            }
+                        }
+                        if (read2 && index2 < GetLength())
+                        {
+                            curr2 = arr[index2];
+                            index2++;
+                        }
 
-                int currOut; // the number to write next
-                if (line1 != null && line2 != null)
-                {
-                    if (curr1 < curr2)
+                        int currOut; // the number to write next
+                        if (line1 != null && index2 <= GetLength())
+                        {
+                            if (curr1 < curr2)
+                            {
+                                currOut = curr1;
+                                read1 = true;
+                                read2 = false;
+                            }
+                            else
+                            {
+                                currOut = curr2;
+                                read1 = false;
+                                read2 = true;
+                            }
+                            writer.WriteLine(currOut);
+                        }
+                    }
+                    while ((read1 && !reader.EndOfStream) ||
+                           (read2 && index2 < GetLength()));
+
+                    if (reader.EndOfStream)
                     {
-                        currOut = curr1;
-                        read1 = true;
-                        read2 = false;
+                        if (!read1) // we have not yet written the last value from the first file
+                            writer.WriteLine(curr1);
+                        if (!read2) // we have not yet written the last value from the second file
+                            writer.WriteLine(curr2);
+                        while (index2 < GetLength())
+                        {
+                            writer.WriteLine(arr[index2]);
+                            index2++;
+                        }
                     }
                     else
                     {
-                        currOut = curr2;
-                        read1 = false;
-                        read2 = true;
+                        if (!read2) // we have not yet written the last value from the second file
+                            writer.WriteLine(curr2);
+                        if (!read1) // we have not yet written the last value from the first file
+                            writer.WriteLine(curr1);
+                        while (!reader.EndOfStream)
+                        {
+                            string line = reader.ReadLine();
+                            writer.WriteLine(line);
+                        }
                     }
-                    writer.WriteLine(currOut);
                 }
             }
-            while ((read1 && !reader1.EndOfStream) ||
-                   (read2 && !reader2.EndOfStream));
+            catch
+            {
+                throw; // to the Main method
+            }
+        }
 
-            if (reader1.EndOfStream)
+        public void MergeFiles(string part1FileName, string part2FileName, string sortedFileName)
+        // merging two sorted files into bigger sorted file
+        {
+            try
             {
-                if (!read1) // we have not yet written the last value from the first file
-                    writer.WriteLine(curr1);
-                if (!read2) // we have not yet written the last value from the second file
-                    writer.WriteLine(curr2);
-                while (!reader2.EndOfStream)
+                using (StreamReader reader1 = new StreamReader(part1FileName))
+                using (StreamReader reader2 = new StreamReader(part2FileName))
+                using (StreamWriter writer = new StreamWriter(sortedFileName))
                 {
-                    string line = reader2.ReadLine();
-                    writer.WriteLine(line);
+                    bool read1 = true; // true if we need to read the next value from the file 1
+                    bool read2 = true; // true if we need to read the next value from the file 2
+                    int curr1 = -1; // the number read last from reader1
+                    int curr2 = -1; // the number read last from reader2
+                    string line1 = null;
+                    string line2 = null;
+                    do
+                    {
+                        if (read1 && !reader1.EndOfStream)
+                        {
+                            line1 = reader1.ReadLine();
+                            if (line1 == null || !int.TryParse(line1, out curr1))
+                            {
+                                line1 = null;
+                                throw new ArgumentException();
+                            }
+                        }
+                        if (read2 && !reader2.EndOfStream)
+                        {
+                            line2 = reader2.ReadLine();
+                            if (line2 == null || !int.TryParse(line2, out curr2))
+                            {
+                                line2 = null;
+                                throw new ArgumentException();
+                            }
+                        }
+
+                        int currOut; // the number to write next
+                        if (line1 != null && line2 != null)
+                        {
+                            if (curr1 < curr2)
+                            {
+                                currOut = curr1;
+                                read1 = true;
+                                read2 = false;
+                            }
+                            else
+                            {
+                                currOut = curr2;
+                                read1 = false;
+                                read2 = true;
+                            }
+                            writer.WriteLine(currOut);
+                        }
+                    }
+                    while ((read1 && !reader1.EndOfStream) ||
+                           (read2 && !reader2.EndOfStream));
+
+                    if (reader1.EndOfStream)
+                    {
+                        if (!read1) // we have not yet written the last value from the first file
+                            writer.WriteLine(curr1);
+                        if (!read2) // we have not yet written the last value from the second file
+                            writer.WriteLine(curr2);
+                        while (!reader2.EndOfStream)
+                        {
+                            string line = reader2.ReadLine();
+                            writer.WriteLine(line);
+                        }
+                    }
+                    else
+                    {
+                        if (!read2) // we have not yet written the last value from the second file
+                            writer.WriteLine(curr2);
+                        if (!read1) // we have not yet written the last value from the first file
+                            writer.WriteLine(curr1);
+                        while (!reader1.EndOfStream)
+                        {
+                            string line = reader1.ReadLine();
+                            writer.WriteLine(line);
+                        }
+                    }
                 }
             }
-            else
+            catch
             {
-                if (!read2) // we have not yet written the last value from the second file
-                    writer.WriteLine(curr2);
-                if (!read1) // we have not yet written the last value from the first file
-                    writer.WriteLine(curr1);
-                while (!reader1.EndOfStream)
-                {
-                    string line = reader1.ReadLine();
-                    writer.WriteLine(line);
-                }
+                throw; // to the Main method
             }
-            writer.Close();
-            reader1.Close();
-            reader2.Close();
         }
 
         void Merge(int l, int q, int r) // Merging two sorted parts of the array: from l to q and from q+1 to r

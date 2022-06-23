@@ -1,0 +1,15 @@
+Random vector from 1 to 10:
+7 6 4 9 5 4 5 6 3 6 7 2 3 5 3 1 7 3 3 3
+
+Quick sort: split by the middle element
+1 2 3 3 3 3 3 3 4 4 5 5 5 6 6 6 7 7 7 9
+
+Random vector from 1 to 20 without repeats:
+17 19 7 1 20 4 11 10 8 16 2 14 12 18 13 6 15 3 9 5
+Quick sort: split by the first element
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20
+
+Reverse of the last vector:
+20 19 18 17 16 15 14 13 12 11 10 9 8 7 6 5 4 3 2 1
+Quick sort: split by the last element
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20
