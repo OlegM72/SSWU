@@ -1,31 +1,32 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using System.IO;
+using System.Collections.Generic;
 
 namespace Task_6_2
 {
     public class Text
     {
         #region variables
-        string text;
-        string[] paragraphs = null;
-        string[] shortestAndLongestWords = null;
+        const string separators = ".!?";  // mark the end of a sentense (dot may be inside a word) 
+        const string allowedChars = ".-"; // characters recorgnised as a part of the word. Examples: result.txt, так-от
+
+        List<string> text;              // strings are read from file but not concatenated to a single string
+        List<string> paragraphs = null; // text may contain several paragraphs divided by ".", "!", "?"
+        List<string> shortestAndLongestWords = null;
         #endregion
 
         #region constructors
-        public Text(string source)
-        {
-            text = source;
-        }
+        
         public Text() // default is creating an empty text
         {
-            text = "";
+            text = new();
+            paragraphs = null;
+            shortestAndLongestWords = null;
         }
 
-        public Text(StreamReader reader) // reading text from the file
+        public Text(StreamReader reader) : this() // reading text from the file
         {
-            text = "";
+            text = new();
             if (reader == null)
                 throw new Exception("File not opened or unknown file error");
             try
@@ -33,63 +34,108 @@ namespace Task_6_2
                 while (!reader.EndOfStream)
                 {
                     string read = reader.ReadLine(); // the next line; line ends are cut out
-                    if (read.Length > 0 && !reader.EndOfStream)
-                    {
-                        read += ' '; // always add a space between lines except for the end of file
-                    }
-                    text += read;
+                    if (read.Length > 0)
+                        text.Add(read);
                 }
             }
-            catch (Exception ex) when (ex.Message != null)
+            catch
             {
-                Console.WriteLine(ex.Message); // "registering a message in journal"
-            }
-            finally
-            {
-                reader.Close();
+                throw; // to the Main method
             }
         }
 
         public Text(Text text) // create a copy of another Text
         {
             this.text = text.text; // :)
+            paragraphs = text.paragraphs;
+            shortestAndLongestWords = text.shortestAndLongestWords;
         }
 
+        public Text(string line) // create a text with a single line
+        {
+            text = new();
+            if (text != null)
+                text.Add(line);
+            paragraphs = null;
+            shortestAndLongestWords = null;
+        }
         #endregion
 
         #region methods
 
-        public void RemoveGarbage() // correct unneeded spaces and three dots
+        public void RemoveGarbage() // correct unneeded spaces and change three dots to ellipsis in all the text
         {
-            string[] words = text.Split(' ', StringSplitOptions.RemoveEmptyEntries);
-            string compressedText = "";
+            for (int i = 0; i < text.Count; i++)
+                text[i] = RemoveGarbage(text[i]);
+        }
+
+        public string RemoveGarbage(string line) // correct unneeded spaces and change three dots to ellipsis
+        {
+            string[] words = line.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+            string compressedLine = "";
             for (int i = 0; i < words.Length; i++)
             {
                 if (words[i].EndsWith("...")) // correct "..." in the end of the word with ellipsis
                     words[i] = words[i][0..^3] +'…'; // means indices from beginning (0) to #3 from the end
                 if (i < words.Length - 1)  // the last word without the space
                     words[i] += " ";
-                compressedText += words[i];
+                compressedLine += words[i];
             }
-            text = compressedText;
+            return compressedLine;
+        }
+
+        int FindASeparator(string line) // find the index of a first separator in the line
+        {
+            for (int i = 0; i < line.Length; i++)
+                for (int j = 0; j < separators.Length; j++)
+                    if (line[i] == separators[j])
+                    {
+                        // dot inside a word is not an end of a sentense. ! and ? inside a word is not allowed
+                        if (line[i] != '.' || i + 1 >= line.Length || line[i + 1] == ' ')
+                            return i; // return the index of the first occurence
+                    }
+            return -1; // if not found any!
         }
 
         public void SplitToParagraphs() // make a separate paragraph from each sentense
         {
-            paragraphs = text.Split('.');
-            if (paragraphs == null)
+            paragraphs = new();
+            string currParagraph = "";
+            string nextLineConsidered = ""; // the string where search for a separator
+            if (text == null)
             {
-                throw new NullReferenceException("The text was not broken into paragraphs");
+                throw new NullReferenceException("The text was not initialized");
             }
-            text = "";
-            for (int i = 0; i < paragraphs.Length; i++)
+            int lineNumber = 0;
+            while (lineNumber < text.Count)
             {
-                if (paragraphs[i] != "" && paragraphs[i][0] == ' ')
-                {   // replace space with line end in the beginning of each paragraph
-                    paragraphs[i] = "\r\n" + paragraphs[i].Substring(1);
+                if (nextLineConsidered == "")
+                    nextLineConsidered = text[lineNumber];
+                int indexOfSeparator = FindASeparator(nextLineConsidered);
+                if (indexOfSeparator < 0) // a separator not found, append the next line
+                {
+                    currParagraph += (nextLineConsidered + " ");
+                    nextLineConsidered = "";
+                    lineNumber++;
                 }
-                // if a dot was not followed by space then it is not a new paragraph, just concatenate
-                text += ( (i == 0?"":".") + paragraphs[i] ); // dot was deleted by Split method
+                else
+                {   // the part before the separator is added to the current paragraph
+                    currParagraph += nextLineConsidered.Substring(0, indexOfSeparator + 1);
+                    // add to the collection of paragraphs
+                    paragraphs.Add(currParagraph);
+                    // exclude the space after the separator if it is not the end of the line
+                    if (indexOfSeparator != nextLineConsidered.Length)
+                        indexOfSeparator++;
+                    // the the part after the separator is the new line to consider
+                    if (indexOfSeparator != nextLineConsidered.Length)
+                        nextLineConsidered = nextLineConsidered.Substring(indexOfSeparator + 1);
+                    else
+                    { // the end of line: go to the next line
+                        nextLineConsidered = "";
+                        lineNumber++;
+                    }
+                    currParagraph = "";
+                }
             }
         }
         public void FindShortLongWordsInParagraphs()
@@ -98,12 +144,12 @@ namespace Task_6_2
             {
                 throw new NullReferenceException("The text was not broken into paragraphs");
             }
-            shortestAndLongestWords = new string[paragraphs.Length];
+            shortestAndLongestWords = new List<string>(paragraphs.Count);
             if (shortestAndLongestWords == null)
             {
                 throw new NullReferenceException("Could not initialize the ShortestAndLongestWords array");
             }
-            for (int currParagraph = 0; currParagraph < paragraphs.Length; currParagraph++)
+            for (int currParagraph = 0; currParagraph < paragraphs.Count; currParagraph++)
             {
                 // 1. Calculate the minimum and maximum word lengths
                 int shortestWordLength = Int32.MaxValue;
@@ -111,13 +157,15 @@ namespace Task_6_2
                 string[] words = paragraphs[currParagraph].Split(' ');
                 for (int i = 0; i < words.Length; i++)
                 {
-                    // leave only letters in the words
+                    // leave only letters in the words. If there is a "." or "-" INSIDE a word, count it as a word part
                     string word = "";
                     for (int j = 0; j < words[i].Length; j++)
                     {
-                        if (Char.IsLetter(words[i][j]))
+                        bool specialChar = allowedChars.Contains(words[i][j]);
+                        if (specialChar || Char.IsLetter(words[i][j]))
                         {
-                            word += words[i][j];
+                            if (!specialChar || j != words[i].Length - 1) // special char in the end of the word is not added
+                                word += words[i][j];
                         }
                     }
                     words[i] = word; // save to words array
@@ -127,7 +175,7 @@ namespace Task_6_2
                         longestWordLength = word.Length;
                 }
                 // 2. Find all words of the minimum length in the current paragraph
-                shortestAndLongestWords[currParagraph] = "";
+                string currentShortestAndLongestWords = "";
                 for (int i = 0; i < words.Length; i++)
                 {
                     if (words[i].Length == shortestWordLength)
@@ -143,13 +191,12 @@ namespace Task_6_2
                             }
                         }
                         if (!exists)
-                            shortestAndLongestWords[currParagraph] += words[i] + " ";
+                            currentShortestAndLongestWords += words[i] + " ";
                     }
-                        
                 }
                 // 3. Find all words of the maximum length in the current paragraph
                 if (shortestWordLength != longestWordLength)
-                    shortestAndLongestWords[currParagraph] += "/ ";
+                    currentShortestAndLongestWords += "/ ";
                 for (int i = 0; i < words.Length; i++)
                 {
                     if (words[i].Length == longestWordLength)
@@ -165,51 +212,73 @@ namespace Task_6_2
                             }
                         }
                         if (!exists)
-                            shortestAndLongestWords[currParagraph] += words[i] + " ";
+                            currentShortestAndLongestWords += words[i] + " ";
                     }
                 }
-                // the result is in shortestAndLongestWords variable
+                shortestAndLongestWords.Add(currentShortestAndLongestWords);
             }
         }
 
-        public void PrintShortLongWordsInParagraphs()
+        public string ShortLongWordsInParagraphs()
         {
+            string result = "";
             if (shortestAndLongestWords == null)
             {
                 throw new NullReferenceException("ShortestAndLongestWords array was not initialized");
             }
-            for (int i = 0; i < shortestAndLongestWords.Length; i++)
-                Console.WriteLine(shortestAndLongestWords[i]);
+            for (int i = 0; i < shortestAndLongestWords.Count; i++)
+                result += (shortestAndLongestWords[i] + "\r\n");
+            return result;
         }
-
 
         public void WriteToFile(StreamWriter writer)
         {
-            if (text == null)
-                throw new NullReferenceException("Text is not initialized");
             if (writer == null)
                 throw new Exception("File not opened or unknown file error");
-            try
-            {
-                writer.Write(text);
+            try {
+                // we can use ToString() method but it is not good, we avoid putting all the text to a single string
+                // writer.Write(this);
+                if (paragraphs != null)
+                {
+                    for (int i = 0; i < paragraphs.Count; i++)
+                        writer.WriteLine(paragraphs[i]);
+                }
+                else
+                {
+                    if (text != null)
+                    {
+                        for (int i = 0; i < text.Count; i++)
+                            writer.WriteLine(text[i]);
+                    }
+                    else
+                        throw new NullReferenceException("The text is not initialized");
+                }
             }
-            catch (Exception ex) when (ex.Message != null)
-            {
-                Console.WriteLine(ex.Message); // "registering a message in journal"
-            }
-            finally
-            {
-                writer.Close();
+            catch {
+                throw; // resolve in the Main method
             }
         }
 
-        public override string ToString()
+        public override string ToString() // return paragraphs if they are defined or an original text if not.
+                                          // Text is put out as a single string (but it is not a normal situation!)
         {
-            if (text == null)
+            string result = "";
+            if (paragraphs != null)
             {
-                throw new NullReferenceException("The text is not initialized");
+                for (int i = 0; i < paragraphs.Count; i++)
+                    result += (paragraphs[i] + "\r\n");
             }
-            return text;
+            else
+            {
+                if (text != null)
+                {
+                    for (int i = 0; i < text.Count; i++)
+                        result += (text[i] + "\r\n");
+                }
+                else
+                    throw new NullReferenceException("The text is not initialized");
+            }
+            return result;
         }
         #endregion
 

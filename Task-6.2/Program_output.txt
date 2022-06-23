@@ -2,24 +2,47 @@ This is an empty text:
 
 
 This is a given text:
-This is an   example   text given by the function... Main
+This is an   example   text given in the function... "Execution"
+
 
 This is a given text without the garbage:
-This is an example text given by the function: Main
+This is an example text given in the functionЕ "Execution"
+
 
 This is a text from the file ../../../Source.txt
-The    text    file    contains    a text,   between    the    words there    can    be    any    number    of   spaces.    Punctuation     marks    are used  correctly    and    are    tied    to    words.    Create       a    class    for working    with    text    that    can    read    information from    the    stream    and    print    the    information    as    well    as    have  methods    for    editing    and    data processing.    Split the   text    to   sentences  and    print    each    sentence    from    the    paragraph  to    the    file    "Result.txt",    which has surely  to  be    added    to    the    repository.    Assume    that    a     sentence  may    be...    in    several    lines. Print    on    the    screen the    longest    and    shortest    words    of every    sentence.
+The    text    file    contains    a text,   between    the    words
+there    can    be    any    number    of   spaces.    Punctuation
+marks    are used  correctly    and    are    tied    to    words.    Create
+    a    class    for working    with    text    that    can    read    information
+from    the    stream    and    print    the    information    as    well    as    have  methods    for    editing    and    data processing.    Split
+the   text    to   sentences  and    print    each    sentence    from    the    paragraph  to    the    file    "Result.txt",    which
+has surely  to  be    added    to    the    repository.    Assume    that    a
+sentence  may    be...    in    several    lines.
+Print    on    the    screen the    longest    and    shortest    words
+of every    sentence.
+
 
 This is the text without the garbage:
-The text file contains a text, between the words there can be any number of spaces. Punctuation marks are used correctly and are tied to words. Create a class for working with text that can read information from the stream and print the information as well as have methods for editing and data processing. Split the text to sentences and print each sentence from the paragraph to the file "Result.txt", which has surely to be added to the repository. Assume that a sentence may be: in several lines. Print on the screen the longest and shortest words of every sentence.
+The text file contains a text, between the words
+there can be any number of spaces. Punctuation
+marks are used correctly and are tied to words. Create
+a class for working with text that can read information
+from the stream and print the information as well as have methods for editing and data processing. Split
+the text to sentences and print each sentence from the paragraph to the file "Result.txt", which
+has surely to be added to the repository. Assume that a
+sentence may beЕ in several lines.
+Print on the screen the longest and shortest words
+of every sentence.
+
 
 This is the text broken into paragraphs:
 The text file contains a text, between the words there can be any number of spaces.
 Punctuation marks are used correctly and are tied to words.
 Create a class for working with text that can read information from the stream and print the information as well as have methods for editing and data processing.
 Split the text to sentences and print each sentence from the paragraph to the file "Result.txt", which has surely to be added to the repository.
-Assume that a sentence may be: in several lines.
+Assume that a sentence may beЕ in several lines.
 Print on the screen the longest and shortest words of every sentence.
+
 
 It was also written out to the file ../../../Result.txt
 
@@ -27,12 +50,9 @@ The shortest and longest words in the text for each paragraph are:
 a / contains
 to / Punctuation
 a / information
-to / sentences paragraph
-to be / repository
+to be / Result.txt repository
 a / sentence
 on of / shortest sentence
 
-Done.
 
-D:\ќбучение\ ниги по программированию и веб-дизайну\C#\repos (sources)\SSWU\Task-6.2\bin\Debug\net5.0\Task-6-2.exe (процесс 28628) завершил работу с кодом 0.
-Ќажмите любую клавишу, чтобы закрыть это окно:
+Done.
