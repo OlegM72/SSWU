@@ -4,6 +4,66 @@ using System.IO;
 
 namespace Task_6_1
 {
+    public class Flat // data for a single flat
+    {
+        public int flatNumber;         // flat number
+        public string owner;           // flat.owner name
+
+        public Flat()
+        {
+            flatNumber = 0;
+            owner = "";
+        }
+    }
+
+    public class FlatData // accounting data for a single flat
+    {
+        public Flat flat;              // flat number and flat.owner
+        public int prevReading;        // previous quarter electricity meter reading
+        public int[] currReading;      // current quarter monthly meter readings
+        public DateTime[] takingDates; // taking date for each month of the quarter
+        public double totalDebt;       // calculated as total kilowatts spend in the quarter * price
+        public TimeSpan periodTaken;   // difference between today and the last taking date
+
+        public FlatData()
+        {
+            flat = new Flat();
+        }
+
+        public void Parse(string line) // trying to find all fields at the current string
+        {
+            try
+            {
+                string[] words = line.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+                if (words.Length < 9)
+                    throw new FormatException("Wrong format of a flat record: less than 9 data values");
+                if (!int.TryParse(words[0], out flat.flatNumber))
+                    throw new FormatException("Wrong format of a flat number: " + words[0]);
+                flat.owner = words[1]; // now we believe it is a correct name
+                if (!int.TryParse(words[2], out prevReading))
+                    throw new FormatException("Wrong format of a previous quarter reading: " + words[2]);
+                currReading = new int[3];
+                if (!int.TryParse(words[3], out currReading[0]))
+                    throw new FormatException("Wrong format of the 1st reading: " + words[3]);
+                if (!int.TryParse(words[5], out currReading[1]))
+                    throw new FormatException("Wrong format of the 2nd reading: " + words[5]);
+                if (!int.TryParse(words[5], out currReading[2]))
+                    throw new FormatException("Wrong format of the 3rd reading: " + words[7]);
+                takingDates = new DateTime[3];
+                if (!DateTime.TryParse(words[4], out takingDates[0]))
+                    throw new FormatException("Wrong format of the 1st reading date: " + words[4]);
+                if (!DateTime.TryParse(words[6], out takingDates[1]))
+                    throw new FormatException("Wrong format of the 1st reading date: " + words[6]);
+                if (!DateTime.TryParse(words[8], out takingDates[2]))
+                    throw new FormatException("Wrong format of the 1st reading date: " + words[8]);
+            }
+            catch
+            {
+                throw; // to the Accounting method
+            }
+        }
+    }
+
     public class Accounting  // ведення обліку витрат електроенергії власниками квартир
     {
         string[,] months = new string[4, 3] {
@@ -14,22 +74,11 @@ namespace Task_6_1
 
         int flatsCount; // number of flats in the report
         int quarter; // number of accounting quarter
-        int maxOwnerLength = 5; // maximum length of a family name: minimum 5 for the column
+        int maxownerLength = 5; // maximum length of a family name: minimum 5 for the column
         double price = 1.44; // grivnas for kilowatt
         DateTime lastDateTaken = DateTime.MinValue; // we will find the maximal of takingDates
         double maxDebt = 0; // we will find the maximal debt
         int maxDebtFlat = 0; // the number of flat with the maximal debt
-
-        public struct FlatData // data for a single flat
-        {
-            public int flatNumber;         // flat number
-            public string owner;           // owner name
-            public int prevReading;        // previous quarter electricity meter reading
-            public int[] currReading;      // current quarter monthly meter readings
-            public DateTime[] takingDates; // taking date for each month of the quarter
-            public double totalDebt;       // calculated as total kilowatts spend in the quarter * price
-            public TimeSpan periodTaken;   // difference between today and the last taking date
-        }
 
         List<FlatData> data; // database
 
@@ -77,37 +126,16 @@ namespace Task_6_1
                     else // usual data line
                     {
                         FlatData currData = new FlatData(); // data for a single flat
-                        string[] words = line.Split(' ', StringSplitOptions.RemoveEmptyEntries);
-                        if (words.Length < 9)
-                            throw new FormatException("Wrong format of a flat record: less than 9 data values");
-                        if (!int.TryParse(words[0], out currData.flatNumber))
-                            throw new FormatException("Wrong format of a flat number: " + words[0]);
-                        currData.owner = words[1]; // now we believe it is a correct name
-                        if (currData.owner.Length > maxOwnerLength)
-                            maxOwnerLength = currData.owner.Length;
-                        if (!int.TryParse(words[2], out currData.prevReading))
-                            throw new FormatException("Wrong format of a previous quarter reading: " + words[2]);
-                        currData.currReading = new int[3];
-                        if (!int.TryParse(words[3], out currData.currReading[0]))
-                            throw new FormatException("Wrong format of the 1st reading: " + words[3]);
-                        if (!int.TryParse(words[5], out currData.currReading[1]))
-                            throw new FormatException("Wrong format of the 2nd reading: " + words[5]);
-                        if (!int.TryParse(words[5], out currData.currReading[2]))
-                            throw new FormatException("Wrong format of the 3rd reading: " + words[7]);
-                        currData.takingDates = new DateTime[3];
-                        if (!DateTime.TryParse(words[4], out currData.takingDates[0]))
-                            throw new FormatException("Wrong format of the 1st reading date: " + words[4]);
-                        if (!DateTime.TryParse(words[6], out currData.takingDates[1]))
-                            throw new FormatException("Wrong format of the 1st reading date: " + words[6]);
-                        if (!DateTime.TryParse(words[8], out currData.takingDates[2]))
-                            throw new FormatException("Wrong format of the 1st reading date: " + words[8]);
+                        currData.Parse(line); // if error then we have an Exception
+                        if (currData.flat.owner.Length > maxownerLength)
+                            maxownerLength = currData.flat.owner.Length;
                         if (currData.takingDates[2] > lastDateTaken)
                             lastDateTaken = currData.takingDates[2];
                         currData.totalDebt = (currData.currReading[2] - currData.prevReading) * price;
                         if (currData.totalDebt > maxDebt)
                         {
                             maxDebt = currData.totalDebt;
-                            maxDebtFlat = currData.flatNumber;
+                            maxDebtFlat = currData.flat.flatNumber;
                         }
                         currData.periodTaken = DateTime.Now - currData.takingDates[2];
                         // everything is correct, adding a new flat to the collection
@@ -121,15 +149,11 @@ namespace Task_6_1
                         "to the actual number of flats. Corrected");
                 }
             } // try
-            catch (Exception ex)
+            catch
             {
-                Console.WriteLine(ex.Message); // "registering in journal"
                 data.Clear();
                 flatsCount = 0;
-            }
-            finally
-            {
-                reader.Close();
+                throw; // to the Main method
             }
         }
 
@@ -151,7 +175,7 @@ namespace Task_6_1
             int i = 0;
             while (i < flatsCount)
             {
-                if (data[i].flatNumber == flatNumber)
+                if (data[i].flat.flatNumber == flatNumber)
                 {
                     found = true;
                     break;
@@ -169,10 +193,10 @@ namespace Task_6_1
 
         private string PrintHeader(int count) // count is the number of flats in the report
         {
-            string horizont = RepeatChar('-', 91 + maxOwnerLength) + "\r\n";
-            string ownerPadded = "Owner".PadRight(maxOwnerLength, ' ');
+            string horizont = RepeatChar('-', 91 + maxownerLength) + "\r\n";
+            string ownerPadded = "flat.owner".PadRight(maxownerLength, ' ');
             return horizont + $"| Report: {count, 3} flats, quarter: {quarter}" + 
-                   RepeatChar(' ', 59 + maxOwnerLength) + "|\r\n" + horizont +
+                   RepeatChar(' ', 59 + maxownerLength) + "|\r\n" + horizont +
                    $"|  #  | {ownerPadded} | Qua.{(quarter == 1 ? 4 : quarter - 1)} | {months[quarter - 1, 0],-16} " +
                    $"| {months[quarter - 1, 1],-16} | {months[quarter - 1, 2],-16} " +
                     "| Debt    | DAT |\r\n" +
@@ -181,7 +205,7 @@ namespace Task_6_1
         
         private string PrintFooter()
         {
-            return RepeatChar('-', 91 + maxOwnerLength) + "\r\n" +
+            return RepeatChar('-', 91 + maxownerLength) + "\r\n" +
                "*DAT = Days after last date the readings were taken\r\n";
         }
 
@@ -197,7 +221,7 @@ namespace Task_6_1
             {
                 if (data[i].totalDebt < 1E-6) // count as zero
                 {
-                    flatsWithoutDebt += $"{data[i].flatNumber} ";
+                    flatsWithoutDebt += $"{data[i].flat.flatNumber} ";
                 }
             }
             if (flatsWithoutDebt != "")
@@ -205,16 +229,16 @@ namespace Task_6_1
             return result;
         }
 
-        public string PrintFlat(FlatData flat)
+        public string PrintFlat(FlatData flatdata)
         {
-            string ownerPadded = flat.owner.PadRight(maxOwnerLength, ' ');
-            // string ownerPadded = flat.owner;
-            // if (ownerPadded.Length < maxOwnerLength) {
-            //    ownerPadded += RepeatChar(' ', maxOwnerLength - ownerPadded.Length); }
-            return $"| {flat.flatNumber,3} | {ownerPadded} | {flat.prevReading,5} " +
-                   $"| {flat.currReading[0],5} | { flat.takingDates[0]:dd.MM.yy} | { flat.currReading[1],5} " +
-                   $"| {flat.takingDates[1]:dd.MM.yy} | {flat.currReading[2],5} | {flat.takingDates[2]:dd.MM.yy} " +
-                   $"| {flat.totalDebt,7:F2} | {flat.periodTaken.Days,3} |\r\n";
+            string ownerPadded = flatdata.flat.owner.PadRight(maxownerLength, ' ');
+            // string flat.ownerPadded = flat.flat.owner;
+            // if (flat.ownerPadded.Length < maxflat.ownerLength) {
+            //    flat.ownerPadded += RepeatChar(' ', maxflat.ownerLength - flat.ownerPadded.Length); }
+            return $"| {flatdata.flat.flatNumber,3} | {ownerPadded} | {flatdata.prevReading,5} " +
+                   $"| {flatdata.currReading[0],5} | {flatdata.takingDates[0]:dd.MM.yy} | {flatdata.currReading[1],5} " +
+                   $"| {flatdata.takingDates[1]:dd.MM.yy} | {flatdata.currReading[2],5} | {flatdata.takingDates[2]:dd.MM.yy} " +
+                   $"| {flatdata.totalDebt,7:F2} | {flatdata.periodTaken.Days,3} |\r\n";
         }
 
         public override string ToString()
