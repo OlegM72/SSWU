@@ -136,6 +136,17 @@ namespace Task_11
             strs.Add("E");
             strs.Sort(); // sorting standard strings is implemented already
             Console.WriteLine(strs); // A B C D E
+
+            // this example was added later just to show this is allowed
+            ProductList<object> misc = new();
+            misc.Add(1);
+            misc.Add("ABC");
+            misc.Add(2);
+            misc.Add('s');
+            misc.Add(3);
+            // misc.Sort(); // System.InvalidOperationException: Failed to compare two elements in the array. 
+                            // ---> System.ArgumentException: Object must be of type String.
+            Console.WriteLine(misc); // 1 ABC 2 s 3
         }
     }
 }
