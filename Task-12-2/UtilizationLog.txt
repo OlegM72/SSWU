@@ -1,0 +1,5 @@
+28.06.2022: Removed expired product Pork, 1.1 kg, 0.00 UAH, expires 05.06.2022. A meat of sort Sort1, type Svini
+28.06.2022: Removed expired product Veal, 1.4 kg, 0.00 UAH, expires 22.06.2022. A meat of sort HighSort, type Telia
+28.06.2022: Removed expired product Bread, 0.7 kg, 0.0 UAH, expires 25.06.2022
+28.06.2022: Removed expired product Bread, 0.7 kg, 0.0 UAH, expires 26.06.2022
+28.06.2022: Removed expired product Bread, 0.7 kg, 0.0 UAH, expires 27.06.2022

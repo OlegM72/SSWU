@@ -6,7 +6,7 @@ namespace Task_12_1
 {
     internal class Program
     {
-        static void Main(string[] args)
+        static void Execute()
         {
             string productsListName1 = "../../../Database1.txt";
             string productsListName2 = "../../../Database2.txt";
@@ -42,14 +42,21 @@ namespace Task_12_1
                         Console.WriteLine(storage2);
                     }
 
-                    Console.WriteLine("\r\nList of removed expired products:");
-                    Storage.PrintUtilizationLog();
                 }
+                Console.WriteLine("\r\nList of removed expired products:");
+                Storage.PrintUtilizationLog();
             }
             catch (Exception ex)
             {
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine(ex.Message);
+                Console.ResetColor();
             }
+        }
+	
+        static void Main(string[] args)
+        {
+            Execute();
         }
     }
 }
