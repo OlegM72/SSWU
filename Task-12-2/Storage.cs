@@ -17,43 +17,21 @@ namespace Task_12_2
         public Storage() // створення порожнього складу
         {
             products = new List<Product>();
+            SetComparer(ProductComparer.ComparerType.Hash);
             s_count = 0;
             s_TotalPrice = 0;
             s_TotalWeight = 0;
             ExpiredProductFound = RemoveExpiredProduct; // setting event handler methods
             ExpiredProductFound += WriteExpiredProduct;
-            SetComparer(ComparerType.Hash);
         }
 
-        private IComparer<Product> currentComparer;
+        private ProductComparer currentComparer;
 
-        ProductHashComparer hashComparer;
-        ProductNameComparer nameComparer;
-        ProductPriceComparer priceComparer;
-        ProductWeightComparer weightComparer;
-
-        public enum ComparerType
+        public void SetComparer(ProductComparer.ComparerType type)
         {
-            Hash = 0,
-            Name,
-            Price,
-            Weight
-        }
-
-        private IComparer<Product> GetComparer(ComparerType type)
-        {
-            switch (type) {
-                case ComparerType.Hash: { hashComparer = new(); return hashComparer; }
-                case ComparerType.Name: { nameComparer = new(); return nameComparer; }
-                case ComparerType.Price: { priceComparer = new(); return priceComparer; }
-                case ComparerType.Weight: { weightComparer = new(); return weightComparer; }
-                default: throw new ArgumentException($"Wrong comparer type: {type}");
-            };
-        }
-
-        public void SetComparer(ComparerType type)
-        {
-            currentComparer = GetComparer(type);
+            if (currentComparer is null)
+                currentComparer = new ProductComparer();
+            currentComparer.SetCompareMethod(type);
         }
 
         public void RemoveExpiredProduct(DairyProduct product) // delegate implementation #1: remove the given product from storage
@@ -96,12 +74,12 @@ namespace Task_12_2
         public Storage(StreamReader reader) // читання колекції товарів з текстового файлу
         {
             products = new List<Product>();
+            SetComparer(ProductComparer.ComparerType.Hash);
             s_count = 0;
             s_TotalPrice = 0;
             s_TotalWeight = 0;
             ExpiredProductFound = RemoveExpiredProduct; // setting event handler methods
             ExpiredProductFound += WriteExpiredProduct;
-            SetComparer(ComparerType.Hash);
             int currLine = 0;
             while (!reader.EndOfStream)
             {
@@ -238,7 +216,7 @@ namespace Task_12_2
 
         private Storage Union(Storage storage2) // return a Storage with all elements in two storages (each appears once)
         {
-            ProductHashComparer comparer = new();
+            ProductComparer comparer = new();
             SortedSet<Product> sortedProducts = new(comparer); // a SortedSet includes each element only once
             decimal totalPrice = 0;
             decimal totalWeight = 0;
@@ -274,9 +252,9 @@ namespace Task_12_2
             decimal totalWeight = s_TotalWeight;
 
             Storage result = new(); // empty Storage
-            ProductHashComparer comparer = new();
+            SetComparer(ProductComparer.ComparerType.Hash);
             // Search only works in sorted lists so we create temporary sorted list
-            SortedSet<Product> sortedProducts = new(comparer);
+            SortedSet<Product> sortedProducts = new(currentComparer);
             foreach (Product product in storage2.products)
             {
                 sortedProducts.Add(product);
@@ -306,9 +284,9 @@ namespace Task_12_2
             decimal totalWeight = s_TotalWeight;
 
             Storage result = new(); // empty Storage
-            ProductHashComparer comparer = new();
+            SetComparer(ProductComparer.ComparerType.Hash);
             // Search only works in sorted lists so we create temporary sorted list
-            SortedSet<Product> sortedProducts = new(comparer);
+            SortedSet<Product> sortedProducts = new(currentComparer);
             foreach (Product product in storage2.products)
             {
                 sortedProducts.Add(product);

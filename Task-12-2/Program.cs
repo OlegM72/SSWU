@@ -47,17 +47,17 @@ namespace Task_12_2
                     do
                     {
                         Console.WriteLine("\r\nDo you want to sort the list by...");
-                        Console.WriteLine($"{Storage.ComparerType.Hash} - press 1");
-                        Console.WriteLine($"{Storage.ComparerType.Name} - press 2");
-                        Console.WriteLine($"{Storage.ComparerType.Price} - press 3");
-                        Console.WriteLine($"{Storage.ComparerType.Weight} - press 4");
+                        Console.WriteLine($"{ProductComparer.ComparerType.Hash} - press 1");
+                        Console.WriteLine($"{ProductComparer.ComparerType.Name} - press 2");
+                        Console.WriteLine($"{ProductComparer.ComparerType.Price} - press 3");
+                        Console.WriteLine($"{ProductComparer.ComparerType.Weight} - press 4");
                         Console.WriteLine($"Exit - press 0");
                         if (!Int32.TryParse(Console.ReadLine(), out type))
                             Console.WriteLine("Wrong reply. Try again...");
                         else
                             if (type > 0 && type < 5)
                             {
-                                storageSum.SetComparer((Storage.ComparerType)(type - 1));
+                                storageSum.SetComparer((ProductComparer.ComparerType)(type - 1));
                                 storageSum.Sort();
                                 Console.WriteLine(storageSum);
                             }
