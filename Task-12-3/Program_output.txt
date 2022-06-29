@@ -1,0 +1,92 @@
+The expression read from the file: 2+2
+It's reverse polish notation is:   2 2 +
+Correct value of the expression is:    4
+Calculated value of the expression is: 4.00000000000
+
+The expression read from the file: 15/5
+It's reverse polish notation is:   15 5 /
+Correct value of the expression is:    3
+Calculated value of the expression is: 3.00000000000
+
+The expression read from the file: 2^10
+It's reverse polish notation is:   2 10 ^
+Correct value of the expression is:    1024
+Calculated value of the expression is: 1024.00000000000
+
+The expression read from the file: 13*13
+It's reverse polish notation is:   13 13 *
+Correct value of the expression is:    169
+Calculated value of the expression is: 169.00000000000
+
+The expression read from the file: -14/14
+It's reverse polish notation is:   14 ~ 14 /
+Correct value of the expression is:    -1
+Calculated value of the expression is: -1.00000000000
+
+The expression read from the file: (1-1)-(2-2)
+It's reverse polish notation is:   1 1 - 2 2 - -
+Correct value of the expression is:    0
+Calculated value of the expression is: 0.00000000000
+
+The expression read from the file: 3+4*2/(1-5)^2^3
+It's reverse polish notation is:   3 4 2 * 1 5 - 2 3 ^ ^ / +
+Correct value of the expression is:    3.00012207031
+Calculated value of the expression is: 3.00012207031
+
+The expression read from the file: ((1-2)^13)*(-12/120*10)^100/12
+It's reverse polish notation is:   1 2 - 13 ^ 12 ~ 120 / 10 * 100 ^ * 12 /
+Correct value of the expression is:    -0.08333333333
+Calculated value of the expression is: -0.08333333333
+
+The expression read from the file: ((((2+3)*4-(2*3)*3+1)^2)-11+(6-1.5*3)^2/3)/7+(12.5*8/100)^1000-1
+It's reverse polish notation is:   2 3 + 4 * 2 3 * 3 * - 1 + 2 ^ 11 - 6 1.5 3 * - 2 ^ 3 / + 7 / 12.5 8 * 100 / 1000 ^ + 1 -
+Correct value of the expression is:    -0.17857142857
+Calculated value of the expression is: -0.17857142857
+
+The expression read from the file: -1/0
+It's reverse polish notation is:   1 ~ 0 /
+Correct value of the expression is:    Division by zero
+Calculated value of the expression is: Division by zero
+
+The expression read from the file: sin(0)
+It's reverse polish notation is:   0 sin
+Correct value of the expression is:    0
+Calculated value of the expression is: 0.00000000000
+
+The expression read from the file: sin(45)
+It's reverse polish notation is:   45 sin
+Correct value of the expression is:    0.70710678118
+Calculated value of the expression is: 0.70710678119
+
+The expression read from the file: sin(-45)
+It's reverse polish notation is:   45 ~ sin
+Correct value of the expression is:    -0.70710678118
+Calculated value of the expression is: -0.70710678119
+
+The expression read from the file: sin(90/3)
+It's reverse polish notation is:   90 3 / sin
+Correct value of the expression is:    0.5
+Calculated value of the expression is: 0.50000000000
+
+The expression read from the file: cos(90/3)
+It's reverse polish notation is:   90 3 / cos
+Correct value of the expression is:    0.86602540378
+Calculated value of the expression is: 0.86602540378
+
+The expression read from the file: 1/sin(45)^2
+It's reverse polish notation is:   1 45 sin 2 ^ /
+Correct value of the expression is:    2
+Calculated value of the expression is: 2.00000000000
+
+The expression read from the file: tg(45)
+It's reverse polish notation is:   45 tg
+Correct value of the expression is:    1
+Calculated value of the expression is: 1.00000000000
+
+The expression read from the file: tg(90)
+It's reverse polish notation is:   90 tg
+Correct value of the expression is:    Division by zero
+Calculated value of the expression is: Division by zero
+
+Done. New functions or operators can be easily added in the program
+Adding them by the user also can be easily implemented but not yet the logic of their calculation
