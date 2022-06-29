@@ -8,15 +8,13 @@ namespace Task_12_2
     {
         static void Execute()
         {
-            string productsListName1 = "../../../Database1.txt";
-            string productsListName2 = "../../../Database2.txt";
-            Storage.utilizationLogName = "../../../UtilizationLog.txt"; // we do not use in this task
+            Storage.utilizationLogName = "../../../UtilizationLog.txt"; // we do not use it in this task but the log is filled anyway
 
             // trying to open the database for reading
             try
             {
-                using (StreamReader reader1 = new StreamReader(productsListName1))
-                using (StreamReader reader2 = new StreamReader(productsListName2))
+                using (StreamReader reader1 = new StreamReader("../../../Database1.txt"))
+                using (StreamReader reader2 = new StreamReader("../../../Database2.txt"))
                 {
                     Storage storage1 = new Storage(reader1); // reading from the file 1
                     if (storage1.GetCount() == 0)

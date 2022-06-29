@@ -8,15 +8,12 @@ namespace Task_12_1
     {
         static void Execute()
         {
-            string productsListName1 = "../../../Database1.txt";
-            string productsListName2 = "../../../Database2.txt";
-            
             Storage.utilizationLogName = "../../../UtilizationLog.txt";
 
             // trying to open the database for reading
             try
             {
-                using (StreamReader reader = new StreamReader(productsListName1))
+                using (StreamReader reader = new StreamReader("../../../Database1.txt"))
                 {
                     Storage storage1 = new Storage(reader); // reading from the file 1
                     if (storage1.GetCount() == 0)
@@ -29,7 +26,7 @@ namespace Task_12_1
                         Console.WriteLine(storage1);
                     }
                 }
-                using (StreamReader reader = new StreamReader(productsListName2))
+                using (StreamReader reader = new StreamReader("../../../Database2.txt"))
                 {
                     Storage storage2 = new Storage(reader); // reading from the file 2
                     if (storage2.GetCount() == 0)
@@ -41,7 +38,6 @@ namespace Task_12_1
                         Console.WriteLine("\r\nThe list of products from the file 2:");
                         Console.WriteLine(storage2);
                     }
-
                 }
                 Console.WriteLine("\r\nList of removed expired products:");
                 Storage.PrintUtilizationLog();
