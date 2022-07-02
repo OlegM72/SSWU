@@ -23,7 +23,7 @@ namespace Translator
         {
             this.pathToText = pathToText;
             this.pathToDictionary = pathToDictionary;
-            this.vocabulary = vocabulary;
+            this.vocabulary = new(vocabulary);
             this.text = text;
         }
 
