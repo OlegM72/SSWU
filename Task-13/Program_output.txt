@@ -1,0 +1,112 @@
+Press 1..3 to close the corresponding cashier and move its queue to another cashier
+Press 1..3 again to reopen the corresponding cashier
+Alt + 1..3 pauses / resumes the cashier for clients instead of closing / reopening it
+Press X to close all cashiers and exit, U to release cashier #1 for serving only disabled people
+
+[Time, sec] Cashier #: Person description (Current number of people IN or OUT)
+[  0] IN --->>> Cashier #1: person Pensioner Client_542 8  0.19 87 (#1) (#1 in queue)
+[  3] IN --->>> Cashier #2: person Child     Client_0b8 14 1 14 (#2) (#1 in queue)
+[  6] IN --->>> Cashier #3: person Pensioner Client_950 6  0.97 77 (#3) (#1 in queue)
+[  8] OUT <<<-- Cashier #1: person Pensioner Client_542 0  0.19 87 (#1) (0 remained in queue)
+[  9] IN --->>> Cashier #1: person Ordinary  Client_5e9 9  0 51 (#4) (#1 in queue)
+[ 12] IN --->>> Cashier #1: person Disabled  Client_8a0 9  0.48 47 (#5) (#2 in queue)
+[ 12] OUT <<<-- Cashier #3: person Pensioner Client_950 0  0.97 77 (#2) (0 remained in queue)
+[ 15] IN --->>> Cashier #3: person Ordinary  Client_03b 7  0.78 52 (#6) (#1 in queue)
+[ 17] OUT <<<-- Cashier #2: person Child     Client_0b8 0  1 14 (#3) (0 remained in queue)
+[ 18] IN --->>> Cashier #2: person Ordinary  Client_23a 10 0.49 39 (#7) (#1 in queue)
+3
+
+Alt pressed. *** Cashier #3 is paused! ***
+[ 21] IN --->>> Cashier #2: person Pensioner Client_9c2 12 0.14 72 (#8) (#2 in queue)
+[ 21] OUT <<<-- Cashier #1: person Disabled  Client_8a0 0  0.48 47 (#4) (1 remained in queue)
+[ 22] OUT <<<-- Cashier #3: person Ordinary  Client_03b 0  0.78 52 (#5) (0 remained in queue)
+[ 24] IN --->>> Cashier #1: person Ordinary  Client_6c0 13 0.06 38 (#9) (#2 in queue)
+[ 27] IN --->>> Cashier #1: person Disabled  Client_5d5 9  0.07 53 (#10) (#3 in queue)
+[ 30] IN --->>> Cashier #2: person Ordinary  Client_9e4 9  0.42 60 (#11) (#3 in queue)
+[ 33] IN --->>> Cashier #1: person Ordinary  Client_bbe 8  0.16 57 (#12) (#4 in queue)
+[ 33] OUT <<<-- Cashier #2: person Pensioner Client_9c2 0  0.14 72 (#6) (2 remained in queue)
+[ 36] IN --->>> Cashier #2: person Disabled  Client_8df 12 0.57 53 (#13) (#3 in queue)
+[ 36] OUT <<<-- Cashier #1: person Disabled  Client_5d5 0  0.07 53 (#7) (3 remained in queue)
+2
+
+*** Cashier #2 is closed! ***
+*** Person Disabled  Client_8df 10 0.57 53 is moved to Cashier #1 (# 4 in queue)
+*** Person Ordinary  Client_9e4 7  0.42 60 is moved to Cashier #1 (# 5 in queue)
+*** Person Ordinary  Client_23a 7  0.49 39 is moved to Cashier #1 (# 6 in queue)
+[ 39] IN --->>> Cashier #1: person Ordinary  Client_782 10 0.64 64 (#14) (#7 in queue)
+[ 42] IN --->>> Cashier #1: person Disabled  Client_e8a 6  0.59 45 (#15) (#8 in queue)
+[ 45] IN --->>> Cashier #1: person Ordinary  Client_dfe 13 0.23 52 (#16) (#9 in queue)
+2
+
+*** Cashier #2 is opened! ***
+[ 48] IN --->>> Cashier #2: person Ordinary  Client_d9d 12 0.07 46 (#17) (#1 in queue)
+[ 48] OUT <<<-- Cashier #1: person Disabled  Client_8df 0  0.57 53 (#8) (8 remained in queue)
+[ 51] IN --->>> Cashier #2: person Disabled  Client_b39 11 0.1 54 (#18) (#2 in queue)
+[ 54] IN --->>> Cashier #2: person Ordinary  Client_ed8 13 0.23 18 (#19) (#3 in queue)
+[ 55] OUT <<<-- Cashier #1: person Disabled  Client_e8a 0  0.59 45 (#9) (7 remained in queue)
+U
+
+*** Cashier #1 is set to serve only persons with the status Disabled! ***
+*** Person Ordinary  Client_6c0 12 0.06 38 is moved to Cashier #2 (# 4 in queue)
+*** Person Ordinary  Client_782 10 0.64 64 is moved to Cashier #2 (# 5 in queue)
+*** Person Ordinary  Client_23a 7  0.49 39 is moved to Cashier #2 (# 6 in queue)
+*** Person Ordinary  Client_9e4 7  0.42 60 is moved to Cashier #2 (# 7 in queue)
+*** Person Ordinary  Client_bbe 7  0.16 57 is moved to Cashier #2 (# 8 in queue)
+*** Person Ordinary  Client_5e9 1  0 51 is moved to Cashier #2 (# 9 in queue)
+*** Person Ordinary  Client_dfe 13 0.23 52 is moved to Cashier #2 (# 10 in queue)
+*** Person Disabled  Client_b39 5  0.1 54 is moved to Cashier #1 (# 1 in queue)
+[ 57] IN --->>> Cashier #2: person Ordinary  Client_24b 14 0.73 60 (#20) (#10 in queue)
+[ 60] IN --->>> Cashier #2: person Ordinary  Client_58d 13 0.35 30 (#21) (#11 in queue)
+*** Cashier #2 is overflowed! ***
+*** Cashier #2 is paused! ***
+[ 62] OUT <<<-- Cashier #1: person Disabled  Client_b39 0  0.1 54 (#10) (0 remained in queue)
+No cashiers available!
+No cashiers available!
+No cashiers available!
+[ 70] OUT <<<-- Cashier #2: person Ordinary  Client_dfe 0  0.23 52 (#11) (10 remained in queue)
+No cashiers available!
+No cashiers available!
+No cashiers available!
+No cashiers available!
+No cashiers available!
+[ 84] OUT <<<-- Cashier #2: person Ordinary  Client_58d 0  0.35 30 (#12) (9 remained in queue)
+No cashiers available!
+No cashiers available!
+3
+
+Alt pressed. *** Cashier #3 is resumed! ***
+[ 93] IN --->>> Cashier #3: person Child     Client_27d 9  0.59 11 (#22) (#1 in queue)
+[ 96] IN --->>> Cashier #3: person Ordinary  Client_d62 5  0.35 63 (#23) (#2 in queue)
+[ 99] IN --->>> Cashier #3: person Ordinary  Client_aca 4  0.61 22 (#24) (#3 in queue)
+[ 99] OUT <<<-- Cashier #2: person Ordinary  Client_24b 0  0.73 60 (#13) (8 remained in queue)
+[102] IN --->>> Cashier #3: person Child     Client_44c 12 0.57 17 (#25) (#4 in queue)
+[102] OUT <<<-- Cashier #3: person Child     Client_27d 0  0.59 11 (#14) (3 remained in queue)
+[105] IN --->>> Cashier #3: person Pensioner Client_a37 14 0.01 77 (#26) (#4 in queue)
+[108] IN --->>> Cashier #3: person Ordinary  Client_b05 14 0.61 36 (#27) (#5 in queue)
+[109] OUT <<<-- Cashier #2: person Ordinary  Client_d9d 0  0.07 46 (#15) (7 remained in queue)
+[111] IN --->>> Cashier #3: person Ordinary  Client_501 13 0.3 51 (#28) (#6 in queue)
+[114] IN --->>> Cashier #1: person Disabled  Client_3a0 14 0.28 36 (#29) (#1 in queue)
+[117] IN --->>> Cashier #3: person Pensioner Client_b10 13 0.04 75 (#30) (#7 in queue)
+[119] OUT <<<-- Cashier #3: person Pensioner Client_a37 0  0.01 77 (#16) (6 remained in queue)
+[123] OUT <<<-- Cashier #2: person Ordinary  Client_ed8 0  0.23 18 (#17) (6 remained in queue)
+[128] OUT <<<-- Cashier #1: person Disabled  Client_3a0 0  0.28 36 (#18) (0 remained in queue)
+[133] OUT <<<-- Cashier #3: person Pensioner Client_b10 0  0.04 75 (#19) (5 remained in queue)
+[136] OUT <<<-- Cashier #2: person Ordinary  Client_6c0 0  0.06 38 (#20) (5 remained in queue)
+*** Cashier #2 is resumed! ***
+[144] OUT <<<-- Cashier #3: person Child     Client_44c 0  0.57 17 (#21) (4 remained in queue)
+[147] OUT <<<-- Cashier #2: person Ordinary  Client_782 0  0.64 64 (#22) (4 remained in queue)
+[155] OUT <<<-- Cashier #2: person Ordinary  Client_23a 0  0.49 39 (#23) (3 remained in queue)
+[159] OUT <<<-- Cashier #3: person Ordinary  Client_b05 0  0.61 36 (#24) (3 remained in queue)
+[163] OUT <<<-- Cashier #2: person Ordinary  Client_9e4 0  0.42 60 (#25) (2 remained in queue)
+[171] OUT <<<-- Cashier #2: person Ordinary  Client_bbe 0  0.16 57 (#26) (1 remained in queue)
+[173] OUT <<<-- Cashier #2: person Ordinary  Client_5e9 0  0 51 (#27) (0 remained in queue)
+[173] OUT <<<-- Cashier #3: person Ordinary  Client_501 0  0.3 51 (#28) (2 remained in queue)
+[178] OUT <<<-- Cashier #3: person Ordinary  Client_aca 0  0.61 22 (#29) (1 remained in queue)
+[184] OUT <<<-- Cashier #3: person Ordinary  Client_d62 0  0.35 63 (#30) (0 remained in queue)
+All people has been served.
+The service process has stopped.
+
+Remarks:
+1. There were no cashiers available for some time because cashier #1 was opened only for 
+   disabled persons, cashier #2 was overflowed and paused and cashier #3 was paused manually.
+2. See also Persons.txt and Result.txt in Files folder.
