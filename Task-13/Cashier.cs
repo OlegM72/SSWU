@@ -13,6 +13,26 @@ namespace Task13
         bool paused = false;       // do not enqueue new clients
         PriorityQueue<Person, PersonStatus> queuePersons;
 
+        public Cashier() : this(0, 0) { }
+
+        public Cashier(int number, double coordinate)
+        {
+            queuePersons = new();
+            this.coordinate = coordinate;
+            this.number = number;
+                // the handler is static but we could also make it public and use through "Shop owner" parameter here
+            QueueOverflow += Shop.Shop_QueueOverflow;
+        }
+
+        public delegate void QueueOverflowHandler(object sender);
+
+        public static event QueueOverflowHandler QueueOverflow;
+
+        public virtual void OnQueueOverflow()
+        {
+            QueueOverflow?.Invoke(this);
+        }
+
         public double Coordinate {
             get => coordinate; 
             set => coordinate = value;
@@ -28,15 +48,6 @@ namespace Task13
         {
             get => number;
             set => number = value;
-        }
-
-        public Cashier() : this(0, 0) { }
-
-        public Cashier(int number, double coordinate)
-        {
-            queuePersons = new();
-            this.coordinate = coordinate;
-            this.number = number;
         }
 
         public bool IsEmpty() => PersonsInQueue() == 0;

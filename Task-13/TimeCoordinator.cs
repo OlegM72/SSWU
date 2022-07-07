@@ -60,9 +60,9 @@ namespace Task13
                             $"person {persons[enteredCounter]} (#{enteredCounter + 1}) " +
                             $"(#{cashier.PersonsInQueue()} in queue)");
                         enteredCounter++;
-                        if (cashier.PersonsInQueue() > shop.MaximumQueueSizeAllowed) // check the queue overflow
+                        if (cashier.PersonsInQueue() >= shop.MaximumQueueSizeAllowed) // check the queue overflow
                         {
-                            shop.OnQueueOverflow(cashier);  // call the event and pause the cashier
+                            cashier.OnQueueOverflow();  // call the event and pause the cashier
                             wasQueueOverflow[cashier.Number - 1] = true;
                         }
                     }
@@ -136,9 +136,9 @@ namespace Task13
                     Program.Message("\r\n");
                     MenuAction(key).Invoke(); // perform the action
                     foreach (Cashier cashier in shop.Cashiers)
-                        if (cashier.PersonsInQueue() > shop.MaximumQueueSizeAllowed) // check the queue overflow
+                        if (cashier.PersonsInQueue() >= shop.MaximumQueueSizeAllowed) // check the queue overflow
                         {
-                            shop.OnQueueOverflow(cashier);  // call the event and pause the cashier
+                            cashier.OnQueueOverflow();  // call the event and pause the cashier
                             wasQueueOverflow[cashier.Number - 1] = true;
                         }
                 }

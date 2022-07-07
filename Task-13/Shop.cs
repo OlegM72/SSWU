@@ -24,24 +24,18 @@ namespace Task13
             if (cashiers is not null)
                 this.cashiers.AddRange(cashiers); // deep copy
             MaximumQueueSizeAllowed = maxQueue;
-            QueueOverflow += Shop_QueueOverflow;
         }
 
-        private void Shop_QueueOverflow(object sender, Cashier cashier)
-            // event handler for the case if a cashier is overqueued and should be paused
+        internal static void Shop_QueueOverflow(object sender)
+        // event handler for the case if a cashier is overqueued and should be paused
         {
-            Program.Message($"*** Cashier #{cashier.Number} is overflowed! ***", ConsoleColor.Yellow);
-            if (!cashier.IsPaused())
-                cashier.PauseOrResume();
-        }
-
-        public delegate void QueueOverflowHandler(object sender, Cashier cashier);
-
-        public static event QueueOverflowHandler QueueOverflow;
-        
-        public virtual void OnQueueOverflow(Cashier cashier)
-        {
-            QueueOverflow?.Invoke(this, cashier);
+            if (sender is not Cashier)
+                return;
+            if (!(sender as Cashier).IsPaused()) 
+            {
+                Program.Message($"*** Cashier #{(sender as Cashier).Number} is overflowed! ***", ConsoleColor.Yellow);
+                (sender as Cashier).PauseOrResume();
+            }
         }
 
         public void ExecuteShopProcess()       // processing the shop service
