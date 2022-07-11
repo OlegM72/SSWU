@@ -6,34 +6,23 @@ namespace Task_12_3
     internal class PolishNotation // Polish postfix (Reverse Polish) expression
     {
         public string Expression { get; set; }
-        Dictionary<string, byte> operatorsPrecedence; // Operators and functions precedence (priority) table
-        public bool divisionByZeroFlag = false;
 
-        public PolishNotation(string expression) // take reverse polish notation from a string
+        Dictionary<string, Lexeme> Lexemes;  // Operators and functions
+
+        public PolishNotation(string expression, Dictionary<string, Lexeme> lexemes) // take reverse polish notation from a string
         {
             Expression = expression;
-            SetOperatorsPrecedence(); // needed only to convert to a polish notation but used to avoid null reference error
+            SetOperatorsPrecedence(lexemes); // needed only to convert to a polish notation but used to avoid null reference error
         }
 
-        void SetOperatorsPrecedence()
+        void SetOperatorsPrecedence(Dictionary<string, Lexeme> lexemes)
         {
-            operatorsPrecedence = new() {
-            { "~", 4 }, // unary minus ("-1")
-            { "sin", 4 },
-            { "cos", 4 },
-            { "tg", 4 },
-            { "^", 3 },
-            { "*", 2 },
-            { "/", 2 },
-            { "+", 1 },
-            { "-", 1 },
-            { "(", 0 }, // to exclude errors when parsing
-            };
+            Lexemes = lexemes; // we want a user to be able to change lexemes from outside, so we do not use a deep copy
         }
 
-        public PolishNotation(MathExpression expression) // take an expression and convert it to a polish notation
+        public PolishNotation(MathExpression expression, Dictionary<string, Lexeme> lexemes) // take an expression and convert it to a polish notation
         {
-            SetOperatorsPrecedence();
+            SetOperatorsPrecedence(lexemes);
             Expression = ConvertToPolishNotation(expression);
         }
 
@@ -113,7 +102,7 @@ namespace Task_12_3
                     // if (operators_functions.Count > 0 && (operators_functions.Peek() != "("))
                     //    output += operators_functions.Pop() + " ";
                 }
-                else if (operatorsPrecedence.ContainsKey(c.ToString())) // check if a symbol is a known operator
+                else if (Lexemes.ContainsKey(c.ToString())) // check if a symbol is a known operator
                 {
                     char oper = c; // if yes, also check if it is unary minus
                     if (oper == '-' && (idx == 0 || (idx > 1 && 
@@ -121,10 +110,10 @@ namespace Task_12_3
                         oper = '~'; // mark it as unary minus operator (will be parsed later)
 
                     // in case of right associated operator "^" after the number we just put it to the stack (^2^3 -> ^ ^ 2 3)
-                    if (oper != '^' || (idx > 1 && !Char.IsDigit(input[idx - 1])))
+                    if (!Lexemes[oper.ToString()].RightAssociated || (idx > 1 && !Char.IsDigit(input[idx - 1])))
                         //	put to output string all operators from the stack that have HIGHER priority, dictionary compares by Value
                         while (operators_functions.Count > 0 && 
-                              (operatorsPrecedence[operators_functions.Peek()] >= operatorsPrecedence[oper.ToString()]))
+                              (Lexemes[operators_functions.Peek()] >= Lexemes[oper.ToString()]))
                             output += operators_functions.Pop() + " ";
                     operators_functions.Push(oper.ToString()); // push the current operator to stack
                 }
@@ -143,62 +132,27 @@ namespace Task_12_3
             return output; // output contains the Reverse Polish notation
         }
 
-        private double DivisionResult(double num1, double num2)
-        {
-            if (num2 == 0)
-            {
-                divisionByZeroFlag = true;
-                return 0;
-            }
-            return num1 / num2;
-        }
-
-        private double TangensResult(double angle)
-        {
-            // the number is never exact, so we suppose it can be close to 90 or -90
-            if (Math.Abs(Math.Abs(angle) - 90) < 0.000001)
-            {
-                divisionByZeroFlag = true;
-                return 0;
-            }
-            return Math.Tan(DegreesToRadians(angle));
-        }
-
-        private double DegreesToRadians(double angle)
-        {
-            return angle * Math.PI / 180f;
-        }
-
         // the function that calculates the result of applying an operator on two numbers
         // in case of unary operator, only the first number is used
-        private double EvaluateOperationOnNumbers(string oper, double operand1, double operand2) => oper switch
+        private double EvaluateOperationOnNumbers(Lexeme oper, double operand1, double operand2)
         {
-            "^" =>   Math.Pow(operand1, operand2), // power operator
-            "sin" => Math.Sin(DegreesToRadians(operand1)),
-            "cos" => Math.Cos(DegreesToRadians(operand1)),
-            "tg" =>  TangensResult(operand1),
-            "~" =>   -operand1,                    // unary minus
-            "+" =>   operand1 + operand2,
-            "-" =>   operand1 - operand2,
-            "*" =>   operand1 * operand2,
-            "/" =>   DivisionResult(operand1, operand2), // check division by zero
-            _ => throw new FormatException("Unknown operator of function in the parsed expression")
-        };
+            return oper.Evaluate(operand1, operand2);
+        }
 
         public double Evaluate() // find a value of the expression in reverse polish notation
         {
             Stack<double> numbers = new(); // stack for numbers or partial expressions values (we parse them in the reverse order)
             string[] words = Expression.Split(' ', StringSplitOptions.RemoveEmptyEntries);
-            divisionByZeroFlag = false;
+            Calculation.divisionByZeroFlag = false;
 
             for (int word = 0; word < words.Length; word++)
             {
                 string currWord = words[word];
                 if (Char.IsDigit(currWord[0])) // this is a number, push it all to stack
                     numbers.Push(Convert.ToDouble(currWord));
-                else if (operatorsPrecedence.ContainsKey(currWord)) // if it is a known operator
+                else if (Lexemes.ContainsKey(currWord)) // if it is a known operator
                 {
-                    if (currWord == "~" || currWord == "sin" || currWord == "cos" || currWord == "tg")
+                    if (Lexemes[currWord].Unary)    // "~" || "sin" || "cos" || "tg"
                     {
                         // case of known UNARY operator
                         // check if the stack is empty: if so, the result of the partial expression is zero
@@ -206,10 +160,10 @@ namespace Task_12_3
                         double lastValue = (numbers.Count > 0) ? numbers.Pop() : 0;
 
                         //	get the result of the operation and push it to the stack
-                        numbers.Push(EvaluateOperationOnNumbers(currWord, lastValue, 0)); // second operand is not important
+                        numbers.Push(EvaluateOperationOnNumbers(Lexemes[currWord], lastValue, 0)); // second operand is not important
                         
                         // check division by zero (for tangens function)
-                        if (divisionByZeroFlag)
+                        if (Calculation.divisionByZeroFlag)
                             return 0;
                     }
                     else
@@ -220,10 +174,10 @@ namespace Task_12_3
                         double operand1 = numbers.Count > 0 ? numbers.Pop() : 0;
 
                         //	get the result of the operation and push it to the stack
-                        numbers.Push(EvaluateOperationOnNumbers(currWord, operand1, operand2));
+                        numbers.Push(EvaluateOperationOnNumbers(Lexemes[currWord], operand1, operand2));
                         
                         // check division by zero (for division operator)
-                        if (divisionByZeroFlag)
+                        if (Calculation.divisionByZeroFlag)
                             return 0;
                     }
                 }
