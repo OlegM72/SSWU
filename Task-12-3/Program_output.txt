@@ -89,4 +89,4 @@ Correct value of the expression is:    Division by zero
 Calculated value of the expression is: Division by zero
 
 Done. New functions or operators can be easily added in the program
-Adding them by the user also can be easily implemented but not yet the logic of their calculation
+Changing the list of functions by the user also can be implemented
