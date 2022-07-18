@@ -4,7 +4,7 @@ using System.IO;
 
 namespace Task_14_3
 {
-    public class DairyProduct : FoodProduct, IProduct
+    public class DairyProduct : FoodProduct
     {
         public DateTime duedate { get; set; } // термін придатності
 

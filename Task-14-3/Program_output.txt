@@ -1,44 +1,44 @@
 Great, there is only a single instance of Storage!
-Factory 'Нова лiнiя' has produced industrial product: Technic_1, 220 V, 50 Hz, Weight: 1 kg, Price: 1651.87 UAH, Size (LxWxH): 1.43 x 1.08 x 0.05
-Factory 'Нова лiнiя' has produced food product: Baran_36, 1.58 kg, 67.88 UAH, expires 28.07.2022. A meat of sort HighSort, type Baran
-Factory 'Епiцентр-К' has produced industrial product: Music Music_12, Genre: Genre_6, Price: 75.6 UAH, Length: 53
-Factory 'Епiцентр-К' has produced food product: Food_47, 0.2 kg, 35.36 UAH
-Factory 'Нова лiнiя' has produced industrial product: Video Video_9, Genre: Genre_7, Price: 237.24 UAH, Length: 102.48
-Factory 'Нова лiнiя' has produced food product: Dairy_46, 0.36 kg, 4.45 UAH, expires 28.07.2022
-Factory 'Епiцентр-К' has produced industrial product: Chemical_13, Volume 0.82 l., Weight: 0.82 kg, Price: 38.49 UAH
-Factory 'Епiцентр-К' has produced food product: Baran_8, 1.25 kg, 28.6 UAH, expires 28.07.2022. A meat of sort Sort2, type Baran
-Factory 'Нова лiнiя' has produced industrial product: Technic_37, 220 V, 50 Hz, Weight: 8.08 kg, Price: 6098.62 UAH, Size (LxWxH): 1.38 x 0.7 x 0.57
-Factory 'Нова лiнiя' has produced food product: Baran_42, 1.43 kg, 88.85 UAH, expires 28.07.2022. A meat of sort Sort1, type Baran
-Factory 'Епiцентр-К' has produced industrial product: Technic_1, 220 V, 50 Hz, Weight: 0.05 kg, Price: 61.57 UAH, Size (LxWxH): 0.75 x 1.14 x 0.6
-Factory 'Епiцентр-К' has produced food product: Dairy_20, 0.97 kg, 66.67 UAH, expires 28.07.2022
-Factory 'Нова лiнiя' has produced industrial product: Chemical_9, Volume 7.82 l., Weight: 7.82 kg, Price: 302.85 UAH
-Factory 'Нова лiнiя' has produced food product: Other_10, 2.31 kg, 279.32 UAH, expires 28.07.2022. A meat of sort Sort2, type Other
-Factory 'Епiцентр-К' has produced industrial product: Technic_39, 220 V, 50 Hz, Weight: 11.11 kg, Price: 1850.79 UAH, Size (LxWxH): 1.17 x 0.97 x 0.57
-Factory 'Епiцентр-К' has produced food product: Dairy_45, 2.43 kg, 32.78 UAH, expires 28.07.2022
-Factory 'Нова лiнiя' has produced industrial product: Music Music_49, Genre: Genre_1, Price: 409.05 UAH, Length: 87.47
-Factory 'Нова лiнiя' has produced food product: Dairy_29, 0.47 kg, 25 UAH, expires 28.07.2022
-Factory 'Епiцентр-К' has produced industrial product: Chemical_32, Volume 6.79 l., Weight: 6.79 kg, Price: 159.78 UAH
-Factory 'Епiцентр-К' has produced food product: Food_1, 1.83 kg, 102.65 UAH
+Factory 'Нова лiнiя' has produced industrial product: File File_29, Genre: Genre_1, Price: 134.54 UAH, Length: 99.79
+Factory 'Нова лiнiя' has produced food product: Svini_16, 1.83 kg, 96.52 UAH, expires 28.07.2022. A meat of sort Sort1, type Svini
+Factory 'Епiцентр-К' has produced industrial product: Chemical_9, Volume 19.25 l, Weight: 19.44 kg, Price: 173.88 UAH
+Factory 'Епiцентр-К' has produced food product: Food_1, 0.45 kg, 90.57 UAH
+Factory 'Нова лiнiя' has produced industrial product: Video Video_3, Genre: Genre_4, Price: 584.8 UAH, Length: 197.62
+Factory 'Нова лiнiя' has produced food product: Dairy_41, 0.71 kg, 124.54 UAH, expires 28.07.2022
+Factory 'Епiцентр-К' has produced industrial product: Chemical_5, Volume 3.75 l, Weight: 3.86 kg, Price: 155.38 UAH
+Factory 'Епiцентр-К' has produced food product: Food_24, 0.6 kg, 149.08 UAH
+Factory 'Нова лiнiя' has produced industrial product: File File_31, Genre: Genre_6, Price: 68.58 UAH, Length: 27.82
+Factory 'Нова лiнiя' has produced food product: Dairy_47, 0.65 kg, 154.55 UAH, expires 28.07.2022
+Factory 'Епiцентр-К' has produced industrial product: Technic_3, 220 V, 50 Hz, Weight: 2.11 kg, Price: 2739.28 UAH, Size (LxWxH): 0.82 x 0.41 x 0.55
+Factory 'Епiцентр-К' has produced food product: Food_26, 1.75 kg, 63.15 UAH
+Factory 'Нова лiнiя' has produced industrial product: Music Music_32, Genre: Genre_5, Price: 430.73 UAH, Length: 100.81
+Factory 'Нова лiнiя' has produced food product: Dairy_47, 0.07 kg, 210.18 UAH, expires 28.07.2022
+Factory 'Епiцентр-К' has produced industrial product: Chemical_25, Volume 14.5 l, Weight: 14.7 kg, Price: 681.45 UAH
+Factory 'Епiцентр-К' has produced food product: Food_34, 0.83 kg, 122.96 UAH
+Factory 'Нова лiнiя' has produced industrial product: File File_23, Genre: Genre_5, Price: 622.4 UAH, Length: 191.22
+Factory 'Нова лiнiя' has produced food product: Baran_16, 0.63 kg, 287.96 UAH, expires 28.07.2022. A meat of sort HighSort, type Baran
+Factory 'Епiцентр-К' has produced industrial product: Technic_40, 220 V, 50 Hz, Weight: 0.06 kg, Price: 76.69 UAH, Size (LxWxH): 0.52 x 0.03 x 0.55
+Factory 'Епiцентр-К' has produced food product: Food_31, 0.69 kg, 94.88 UAH
 
 The list of products in the storage:
-1. Technic_1, 220 V, 50 Hz, Weight: 1 kg, Price: 1651.87 UAH, Size (LxWxH): 1.43 x 1.08 x 0.05
-2. Baran_36, 1.58 kg, 41.58 UAH, expires 28.07.2022. A meat of sort HighSort, type Baran
-3. Music Music_12, Genre: Genre_6, Price: 75.6 UAH, Length: 53
-4. Food_47, 0.2 kg, 35.36 UAH
-5. Video Video_9, Genre: Genre_7, Price: 237.24 UAH, Length: 102.48
-6. Dairy_46, 0.36 kg, 3.12 UAH, expires 28.07.2022
-7. Chemical_13, Volume 0.82 l., Weight: 0.82 kg, Price: 38.49 UAH
-8. Baran_8, 1.25 kg, 20.02 UAH, expires 28.07.2022. A meat of sort Sort2, type Baran
-9. Technic_37, 220 V, 50 Hz, Weight: 8.08 kg, Price: 6098.62 UAH, Size (LxWxH): 1.38 x 0.7 x 0.57
-10. Baran_42, 1.43 kg, 47.89 UAH, expires 28.07.2022. A meat of sort Sort1, type Baran
-11. Technic_1, 220 V, 50 Hz, Weight: 0.05 kg, Price: 61.57 UAH, Size (LxWxH): 0.75 x 1.14 x 0.6
-12. Dairy_20, 0.97 kg, 46.67 UAH, expires 28.07.2022
-13. Chemical_9, Volume 7.82 l., Weight: 7.82 kg, Price: 302.85 UAH
-14. Other_10, 2.31 kg, 195.52 UAH, expires 28.07.2022. A meat of sort Sort2, type Other
-15. Technic_39, 220 V, 50 Hz, Weight: 11.11 kg, Price: 1850.79 UAH, Size (LxWxH): 1.17 x 0.97 x 0.57
-16. Dairy_45, 2.43 kg, 22.95 UAH, expires 28.07.2022
-17. Music Music_49, Genre: Genre_1, Price: 409.05 UAH, Length: 87.47
-18. Dairy_29, 0.47 kg, 17.5 UAH, expires 28.07.2022
-19. Chemical_32, Volume 6.79 l., Weight: 6.79 kg, Price: 159.78 UAH
-20. Food_1, 1.83 kg, 102.65 UAH
-TOTAL: 12.83 kg, 11419.12 UAH, meat: 4 pieces
+1. File File_29, Genre: Genre_1, Price: 134.54 UAH, Length: 99.79
+2. Svini_16, 1.83 kg, 52.02 UAH, expires 28.07.2022. A meat of sort Sort1, type Svini
+3. Chemical_9, Volume 19.25 l, Weight: 19.44 kg, Price: 173.88 UAH
+4. Food_1, 0.45 kg, 90.57 UAH
+5. Video Video_3, Genre: Genre_4, Price: 584.8 UAH, Length: 197.62
+6. Dairy_41, 0.71 kg, 87.18 UAH, expires 28.07.2022
+7. Chemical_5, Volume 3.75 l, Weight: 3.86 kg, Price: 155.38 UAH
+8. Food_24, 0.6 kg, 149.08 UAH
+9. File File_31, Genre: Genre_6, Price: 68.58 UAH, Length: 27.82
+10. Dairy_47, 0.65 kg, 108.18 UAH, expires 28.07.2022
+11. Technic_3, 220 V, 50 Hz, Weight: 2.11 kg, Price: 2739.28 UAH, Size (LxWxH): 0.82 x 0.41 x 0.55
+12. Food_26, 1.75 kg, 63.15 UAH
+13. Music Music_32, Genre: Genre_5, Price: 430.73 UAH, Length: 100.81
+14. Dairy_47, 0.07 kg, 147.13 UAH, expires 28.07.2022
+15. Chemical_25, Volume 14.5 l, Weight: 14.7 kg, Price: 681.45 UAH
+16. Food_34, 0.83 kg, 122.96 UAH
+17. File File_23, Genre: Genre_5, Price: 622.4 UAH, Length: 191.22
+18. Baran_16, 0.63 kg, 176.38 UAH, expires 28.07.2022. A meat of sort HighSort, type Baran
+19. Technic_40, 220 V, 50 Hz, Weight: 0.06 kg, Price: 76.69 UAH, Size (LxWxH): 0.52 x 0.03 x 0.55
+20. Food_31, 0.69 kg, 94.88 UAH
+TOTAL: 8.21 kg, 6759.26 UAH, meat: 2 pieces

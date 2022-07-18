@@ -24,24 +24,17 @@ namespace Task_14_3
 
         public IFoodProduct CreateFoodProduct()
         {
-            switch (DateTime.Now.Millisecond % 3)
+            switch (DateTime.Now.Millisecond % 2)
             {
-                case 0: { return new MeatProduct(); }
-                case 1: { return new DairyProduct(); }
-                case 2: { return new FoodProduct(); }
+                case 0:  return new MeatProduct();
+                case 1:  return new DairyProduct();
                 default: return null;
             }
         }
 
         public IIndustrialProduct CreateIndustrialProduct()
         {
-            switch ((DateTime.Now.Millisecond + 1) % 3)
-            {
-                case 0: { return new TechnicProduct(); }
-                case 1: { return new HouseholdChemicalProduct(); }
-                case 2: { return new VirtualProduct(); }
-                default: return null;
-            }
+            return new VirtualProduct();
         }
     }
 
@@ -52,22 +45,15 @@ namespace Task_14_3
 
         public IFoodProduct CreateFoodProduct()
         {
-            switch ((DateTime.Now.Millisecond + 1) % 3)
-            {
-                case 0: { return new MeatProduct(); }
-                case 1: { return new DairyProduct(); }
-                case 2: { return new FoodProduct(); }
-                default: return null;
-            }
+            return new FoodProduct();
         }
 
         public IIndustrialProduct CreateIndustrialProduct()
         {
-            switch (DateTime.Now.Millisecond % 3)
+            switch (DateTime.Now.Millisecond % 2)
             {
-                case 0: { return new TechnicProduct(); }
-                case 1: { return new HouseholdChemicalProduct(); }
-                case 2: { return new VirtualProduct(); }
+                case 0:  return new TechnicProduct();
+                case 1:  return new HouseholdChemicalProduct();
                 default: return null;
             }
         }

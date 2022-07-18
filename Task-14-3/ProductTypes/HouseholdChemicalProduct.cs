@@ -22,9 +22,9 @@ namespace Task_14_3
         {
             Random random = new Random();
             name = "Chemical_" + random.Next(1, 50).ToString();
-            weight = (decimal)Math.Round(Math.Abs(random.NextDouble()) * 10, 2);
+            weight = (decimal)Math.Round(Math.Abs(random.NextDouble()) * 20, 2);
             price = (decimal)Math.Round(Math.Abs(random.NextDouble()) * 50 * (double)weight, 2);
-            characteristics = "Volume " + weight.ToString() + " l.";
+            characteristics = "Volume " + (Math.Round(weight * 4, 0, MidpointRounding.ToZero) / 4).ToString() + " l";
         }
 
         public virtual void PriceChange(int percent)

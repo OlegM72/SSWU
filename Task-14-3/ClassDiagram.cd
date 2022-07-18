@@ -1,0 +1,232 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="storage = Storage.Instance();&#xD;&#xA;storage.ProduceProducts();">
+    <Position X="12.508" Y="2.742" Height="0.531" Width="2.011" />
+  </Comment>
+  <Class Name="Task_14_3.NovaLiniaFactory" BaseTypeListCollapsed="true">
+    <Position X="13.75" Y="6.25" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAACQAAAAAAAAAEAAAAAAAAAA=</HashCode>
+      <FileName>IAbstractFactory.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Task_14_3.EpicentrFactory" BaseTypeListCollapsed="true">
+    <Position X="10.25" Y="6.25" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAACQAAAAAAAAAEAAAAAAAAAA=</HashCode>
+      <FileName>IAbstractFactory.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Task_14_3.DairyProduct">
+    <Position X="0.75" Y="5" Width="1.5" />
+    <Members>
+      <Method Name="GetDuedate" Hidden="true" />
+      <Method Name="GetHashCode" Hidden="true" />
+      <Method Name="PriceChange" Hidden="true" />
+      <Method Name="ToString" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAAAAAAEAAAAAAAAIAAAAIAAgAAAAAAAAAA=</HashCode>
+      <FileName>ProductTypes\DairyProduct.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Task_14_3.FoodProduct">
+    <Position X="0.75" Y="2.25" Width="1.5" />
+    <Members>
+      <Method Name="GetHashCode" Hidden="true" />
+      <Method Name="GetName" Hidden="true" />
+      <Method Name="GetPrice" Hidden="true" />
+      <Method Name="GetWeight" Hidden="true" />
+      <Method Name="SetProduct" Hidden="true" />
+      <Method Name="ToString" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAABAAAACACAAAAEEAAAAAAAAAAEAIAggAAAAAAABAA=</HashCode>
+      <FileName>ProductTypes\FoodProduct.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Task_14_3.HouseholdChemicalProduct" BaseTypeListCollapsed="true">
+    <Position X="6.75" Y="6.25" Width="2.25" />
+    <Members>
+      <Method Name="GetCharacteristics" Hidden="true" />
+      <Method Name="GetHashCode" Hidden="true" />
+      <Method Name="GetName" Hidden="true" />
+      <Method Name="GetPrice" Hidden="true" />
+      <Method Name="GetWeight" Hidden="true" />
+      <Method Name="PriceChange" Hidden="true" />
+      <Method Name="ToString" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>ACABAAAACAAAAAAEEAAAAAgAAAAEAIAggAAAAAAABAA=</HashCode>
+      <FileName>ProductTypes\HouseholdChemicalProduct.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Task_14_3.MeatProduct">
+    <Position X="0.75" Y="7.25" Width="1.5" />
+    <Members>
+      <Method Name="GetCategory" Hidden="true" />
+      <Method Name="GetHashCode" Hidden="true" />
+      <Method Name="GetMeatType" Hidden="true" />
+      <Method Name="PriceChange" Hidden="true" />
+      <Method Name="ToString" Hidden="true" />
+    </Members>
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Enum Name="Task_14_3.MeatProduct.Category" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>ProductTypes\MeatProduct.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+      <Enum Name="Task_14_3.MeatProduct.MeatType" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>ProductTypes\MeatProduct.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAAAAAAABgIAAgAAIAAAAAgA=</HashCode>
+      <FileName>ProductTypes\MeatProduct.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Task_14_3.TechnicProduct" BaseTypeListCollapsed="true">
+    <Position X="4.75" Y="6.25" Width="1.75" />
+    <Members>
+      <Method Name="GetCharacteristics" Hidden="true" />
+      <Method Name="GetHashCode" Hidden="true" />
+      <Method Name="GetHeight" Hidden="true" />
+      <Method Name="GetLength" Hidden="true" />
+      <Method Name="GetName" Hidden="true" />
+      <Method Name="GetPrice" Hidden="true" />
+      <Method Name="GetWeight" Hidden="true" />
+      <Method Name="GetWidth" Hidden="true" />
+      <Method Name="PriceChange" Hidden="true" />
+      <Method Name="ToString" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>ACABAAAACAAAAAQEVEAAAAhAAAAEAIAggAAAAEAABAA=</HashCode>
+      <FileName>ProductTypes\TechnicProduct.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Task_14_3.VirtualProduct" BaseTypeListCollapsed="true">
+    <Position X="2.75" Y="6.25" Width="1.5" />
+    <Members>
+      <Method Name="GetCategory" Hidden="true" />
+      <Method Name="GetGenre" Hidden="true" />
+      <Method Name="GetHashCode" Hidden="true" />
+      <Method Name="GetLength" Hidden="true" />
+      <Method Name="GetName" Hidden="true" />
+      <Method Name="GetPrice" Hidden="true" />
+      <Method Name="PriceChange" Hidden="true" />
+      <Method Name="ToString" Hidden="true" />
+    </Members>
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Enum Name="Task_14_3.VirtualProduct.Category" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>ProductTypes\VirtualProduct.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AACBAAAAAAAAAAAEFEAAAAACAAAEgIAAgAAIAAAABAA=</HashCode>
+      <FileName>ProductTypes\VirtualProduct.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Task_14_3.Program">
+    <Position X="12.5" Y="0.5" Width="2" />
+    <Members>
+      <Method Name="Main" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Task_14_3.Storage">
+    <Position X="7.5" Y="0.5" Width="3.75" />
+    <Members>
+      <Method Name="AddProduct" Hidden="true" />
+      <Method Name="GetCount" Hidden="true" />
+      <Method Name="GetMeatCount" Hidden="true" />
+      <Method Name="GetProduct" Hidden="true" />
+      <Method Name="GetTotalPrice" Hidden="true" />
+      <Method Name="GetTotalWeight" Hidden="true" />
+      <Property Name="this" Hidden="true" />
+      <Method Name="ToString" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAQAAAQAAAAAAAAECAEAQAAAAABEAAAAQCQBDAJAAAA=</HashCode>
+      <FileName>Storage.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="Task_14_3.IFoodProduct">
+    <Position X="0.75" Y="0.5" Width="1.5" />
+    <Members>
+      <Method Name="GetWeight" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAACAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAA=</HashCode>
+      <FileName>ProductInterfaces\IFoodProduct.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Task_14_3.IIndustrialProduct" Collapsed="true">
+    <Position X="3.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ProductInterfaces\IIndustrialProduct.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Task_14_3.IPhysicalProduct">
+    <Position X="5.75" Y="4" Width="1.5" />
+    <Members>
+      <Method Name="GetHeight" Hidden="true" />
+      <Method Name="GetLength" Hidden="true" />
+      <Method Name="GetWeight" Hidden="true" />
+      <Method Name="GetWidth" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAACAAAAAQAREAAAABAAAAAAAAgAAAAAEAAAAA=</HashCode>
+      <FileName>ProductInterfaces\IPhysicalProduct.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Task_14_3.IProduct">
+    <Position X="3" Y="0.5" Width="2.5" />
+    <Members>
+      <Method Name="GetName" Hidden="true" />
+      <Method Name="GetPrice" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAAAAAEAAAAAAAAAAEAAAAgAAAAAAABAA=</HashCode>
+      <FileName>ProductInterfaces\IProduct.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Task_14_3.IVirtualProduct">
+    <Position X="2.75" Y="4" Width="1.5" />
+    <Members>
+      <Method Name="GetGenre" Hidden="true" />
+      <Method Name="GetLength" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AACAAAAAAAAAAAAABEAAAAACAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ProductInterfaces\IVirtualProduct.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Task_14_3.IAbstractFactory">
+    <Position X="12" Y="3.75" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAACQAAAAAAAAAEAAAAAAAAAA=</HashCode>
+      <FileName>IAbstractFactory.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

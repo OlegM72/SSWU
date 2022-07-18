@@ -5,7 +5,7 @@ using System.Runtime.Serialization;
 
 namespace Task_14_3
 {
-    public class MeatProduct : DairyProduct, IFoodProduct
+    public class MeatProduct : DairyProduct
     {
         public enum Category
         {
