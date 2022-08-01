@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -33,6 +34,7 @@ namespace Task_15
             foreach (T item in list) Print(item + " ");
             PrintLine();
         }
+        
         static void PrintGroup<G, T>(IEnumerable<IGrouping<G, T>> list)
         {
             foreach (IGrouping<G, T> group in list)
@@ -225,13 +227,71 @@ namespace Task_15
             #endregion
 
             #region Task 15.5
-            // 5. Задано послідовність додатних значень numbers та послідовність рядків stringList. Отримати нову послідовність рядків
-            // за таким правилом: для кожного значення n із послідовності numbers вибрати рядок із послідовності stringList,
-            // що починається з цифри і має довжину n. Якщо є необхідних рядків в послідовності stringList є кілька -
-            // повернути першу, якщо їх немає, то повернути рядок "Not found" (Для обробки ситуації, пов'язаної
-            // з відсутністю необхідних рядків, використовувати операцію ??)
-            
-            // Эта задача СОВПАДАЕТ с 15.1
+            // 5. Задано послідовність даних про абітурієнтів, що включає поля <Номер школи> <Рік вступу> <Прізвище>.
+            // Створити словник, ключами якого будуть роки, що зустрічаються в першій послідовності, а значеннями -
+            // список прізвищ абітурієнтів.
+
+            Abiturient[] abiturients = {
+                new(37, 1990, "Мельников"),
+                new(121, 2020, "Буєвич"),
+                new(100, 2020, "Толмачов"),
+                new(17, 2019, "Босий"),
+                new(11, 2019, "Павленко"),
+                new(27, 2020, "Гагарин"),
+                new(55, 2018, "Катайцев"),
+                new(55, 2018, "Яловега")
+            };
+
+            Dictionary<int, IEnumerable<Abiturient>> dictionary = new();
+            var result5 = abiturients.GroupBy(abiturient => abiturient.YearEntered)
+                                     .Select(group => new { Year = group.Key, Abiturients = group })
+                                     .OrderBy(item => item.Year);
+            // result5 is IOrderedEnumerable<'a>
+            // converting the result to dictionary
+            foreach (var group in result5)
+                dictionary[group.Year] = group.Abiturients;
+            PrintLine("\r\nTASK 15.5:");
+            Print("Abiturients array: "); PrintList(nameList);
+            PrintLine("Result of extensions: ");
+            // Printing dictionary
+            foreach (KeyValuePair<int, IEnumerable<Abiturient>> item in dictionary)
+            {
+                Print(">> Key = " + item.Key + ", elements: ");
+                foreach (Abiturient i in item.Value)
+                    Print(i.ToString() + " ");
+                PrintLine();
+            }
+            // >> Key = 1990, elements: Abiturient { SchoolNumber = 37, YearEntered = 1990, LastName = Мельников }
+            // >> Key = 2018, elements: Abiturient { SchoolNumber = 55, YearEntered = 2018, LastName = Катайцев } Abiturient { SchoolNumber = 55, YearEntered = 2018, LastName = Яловега }
+            // >> Key = 2019, elements: Abiturient { SchoolNumber = 17, YearEntered = 2019, LastName = Босий } Abiturient { SchoolNumber = 11, YearEntered = 2019, LastName = Павленко }
+            // >> Key = 2020, elements: Abiturient { SchoolNumber = 121, YearEntered = 2020, LastName = Буєвич } Abiturient { SchoolNumber = 100, YearEntered = 2020, LastName = Толмачов } Abiturient { SchoolNumber = 27, YearEntered = 2020, LastName = Гагарин }
+
+            // Method to print the group (result5) is:
+            // foreach (var group in result5)
+            // {
+            //    Print(">> Group with Key = " + group.Year + ": elements ");
+            //    foreach (var item in group.Abiturients)
+            //        Print(item + " ");
+            //    PrintLine();
+            //  }
+
+            var result5_1 = from abiturient in abiturients
+                            group abiturient by abiturient.YearEntered into _group
+                            orderby _group.Key
+                            select new { Year = _group.Key, Abiturients = _group };
+            // result5_1 is IEnumerable<'a>
+            dictionary = new();
+            foreach (var group in result5)
+                dictionary[group.Year] = group.Abiturients;
+            PrintLine("Result of expression: "); 
+            foreach (KeyValuePair<int, IEnumerable<Abiturient>> item in dictionary)
+            {
+                Print(">> Key = " + item.Key + ", elements: ");
+                foreach (Abiturient i in item.Value)
+                    Print(i.ToString() + " ");
+                PrintLine();
+            }
+            // the resutl is same as above
             #endregion
         }
     }

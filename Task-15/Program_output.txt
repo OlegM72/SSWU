@@ -1,0 +1,35 @@
+TASK 15.1:
+Int array: 1 2 3 4 5 6 7 8 9 10
+String array: "" 1 02 003 0004 0005 a0006 b007 c08 d09 e10
+Result of extensions: 1 02 003 0004 Не знайдено Не знайдено Не знайдено Не знайдено Не знайдено Не знайдено
+Result of expression: 1 02 003 0004 Не знайдено Не знайдено Не знайдено Не знайдено Не знайдено Не знайдено
+
+TASK 15.2:
+String array: ZERO UNO DOS TRES CUATRO CINCO SEIS SIETE OCHO NUEVE DIEZ ONCE DOCE TRECE CATORCE QUINCE DIECISEIS DIECISIETE DIECIOCHO DIECINUEVE VEINTE
+Result of extensions: { Letter = D, TotalLength = 49 } { Letter = C, TotalLength = 18 } { Letter = S, TotalLength = 9 } { Letter = T, TotalLength = 9 } { Letter = O, TotalLength = 8 } { Letter = Q, TotalLength = 6 } { Letter = V, TotalLength = 6 } { Letter = N, TotalLength = 5 } { Letter = Z, TotalLength = 4 } { Letter = U, TotalLength = 3 }
+Result of expression: { Letter = D, TotalLength = 49 } { Letter = C, TotalLength = 18 } { Letter = S, TotalLength = 9 } { Letter = T, TotalLength = 9 } { Letter = O, TotalLength = 8 } { Letter = Q, TotalLength = 6 } { Letter = V, TotalLength = 6 } { Letter = N, TotalLength = 5 } { Letter = Z, TotalLength = 4 } { Letter = U, TotalLength = 3 }
+
+TASK 15.3:
+Abiturients array: Abiturient { SchoolNumber = 37, YearEntered = 1990, LastName = Мельников } Abiturient { SchoolNumber = 121, YearEntered = 2020, LastName = Буєвич } Abiturient { SchoolNumber = 100, YearEntered = 2020, LastName = Толмачов } Abiturient { SchoolNumber = 17, YearEntered = 2019, LastName = Босий } Abiturient { SchoolNumber = 11, YearEntered = 2019, LastName = Павленко } Abiturient { SchoolNumber = 27, YearEntered = 2020, LastName = Гагарин } Abiturient { SchoolNumber = 55, YearEntered = 2018, LastName = Катайцев } Abiturient { SchoolNumber = 55, YearEntered = 2018, LastName = Яловега }
+Years array: 1990 1995 2000 2005 2010 2015 2016 2017 2018 2019 2020 2021 2022
+Result of extensions: { Year = 1995, SchoolsNumber = 0 } { Year = 2000, SchoolsNumber = 0 } { Year = 2005, SchoolsNumber = 0 } { Year = 2010, SchoolsNumber = 0 } { Year = 2015, SchoolsNumber = 0 } { Year = 2016, SchoolsNumber = 0 } { Year = 2017, SchoolsNumber = 0 } { Year = 2021, SchoolsNumber = 0 } { Year = 2022, SchoolsNumber = 0 } { Year = 1990, SchoolsNumber = 1 } { Year = 2018, SchoolsNumber = 2 } { Year = 2019, SchoolsNumber = 2 } { Year = 2020, SchoolsNumber = 3 }
+Result of expression: { Year = 1995, SchoolsNumber = 0 } { Year = 2000, SchoolsNumber = 0 } { Year = 2005, SchoolsNumber = 0 } { Year = 2010, SchoolsNumber = 0 } { Year = 2015, SchoolsNumber = 0 } { Year = 2016, SchoolsNumber = 0 } { Year = 2017, SchoolsNumber = 0 } { Year = 2021, SchoolsNumber = 0 } { Year = 2022, SchoolsNumber = 0 } { Year = 1990, SchoolsNumber = 1 } { Year = 2018, SchoolsNumber = 2 } { Year = 2019, SchoolsNumber = 2 } { Year = 2020, SchoolsNumber = 3 }
+
+TASK 15.4:
+Suppliers array: Supplier { Code = 37, BirthYear = 1970, Street = Хрещатик } Supplier { Code = 121, BirthYear = 2000, Street = Хрещатик } Supplier { Code = 100, BirthYear = 2000, Street = Перова } Supplier { Code = 17, BirthYear = 1999, Street = Микояна } Supplier { Code = 11, BirthYear = 1998, Street = Сiкорьского } Supplier { Code = 27, BirthYear = 1998, Street = Лесi Українки } Supplier { Code = 55, BirthYear = 1995, Street = Алматинська } Supplier { Code = 57, BirthYear = 2002, Street = Празька }
+SupplierDiscounts array: SupplierDiscount { Code = 37, ShopName = Фора, DiscountPercent = 25 } SupplierDiscount { Code = 121, ShopName = Фора, DiscountPercent = 20 } SupplierDiscount { Code = 100, ShopName = Бiлла, DiscountPercent = 15 } SupplierDiscount { Code = 17, ShopName = Фора, DiscountPercent = 25 } SupplierDiscount { Code = 11, ShopName = Нова лiнiя, DiscountPercent = 10 } SupplierDiscount { Code = 27, ShopName = Нова лiнiя, DiscountPercent = 10 } SupplierDiscount { Code = 55, ShopName = Бiлла, DiscountPercent = 10 } SupplierDiscount { Code = 57, ShopName = Рошен, DiscountPercent = 5 }
+Result of extensions: { Shop = Бiлла, MaxDiscountOwner = Supplier Перова } { Shop = Нова лiнiя, MaxDiscountOwner = Supplier Сiкорьского } { Shop = Рошен, MaxDiscountOwner = Supplier Празька } { Shop = Фора, MaxDiscountOwner = Supplier Микояна }
+
+TASK 15.5:
+Abiturients array: Abiturient { SchoolNumber = 37, YearEntered = 1990, LastName = Мельников } Abiturient { SchoolNumber = 121, YearEntered = 2020, LastName = Буєвич } Abiturient { SchoolNumber = 100, YearEntered = 2020, LastName = Толмачов } Abiturient { SchoolNumber = 17, YearEntered = 2019, LastName = Босий } Abiturient { SchoolNumber = 11, YearEntered = 2019, LastName = Павленко } Abiturient { SchoolNumber = 27, YearEntered = 2020, LastName = Гагарин } Abiturient { SchoolNumber = 55, YearEntered = 2018, LastName = Катайцев } Abiturient { SchoolNumber = 55, YearEntered = 2018, LastName = Яловега }
+Result of extensions:
+>> Key = 1990, elements: Abiturient { SchoolNumber = 37, YearEntered = 1990, LastName = Мельников }
+>> Key = 2018, elements: Abiturient { SchoolNumber = 55, YearEntered = 2018, LastName = Катайцев } Abiturient { SchoolNumber = 55, YearEntered = 2018, LastName = Яловега }
+>> Key = 2019, elements: Abiturient { SchoolNumber = 17, YearEntered = 2019, LastName = Босий } Abiturient { SchoolNumber = 11, YearEntered = 2019, LastName = Павленко }
+>> Key = 2020, elements: Abiturient { SchoolNumber = 121, YearEntered = 2020, LastName = Буєвич } Abiturient { SchoolNumber = 100, YearEntered = 2020, LastName = Толмачов } Abiturient { SchoolNumber = 27, YearEntered = 2020, LastName = Гагарин }
+Result of expression:
+>> Key = 1990, elements: Abiturient { SchoolNumber = 37, YearEntered = 1990, LastName = Мельников }
+>> Key = 2018, elements: Abiturient { SchoolNumber = 55, YearEntered = 2018, LastName = Катайцев } Abiturient { SchoolNumber = 55, YearEntered = 2018, LastName = Яловега }
+>> Key = 2019, elements: Abiturient { SchoolNumber = 17, YearEntered = 2019, LastName = Босий } Abiturient { SchoolNumber = 11, YearEntered = 2019, LastName = Павленко }
+>> Key = 2020, elements: Abiturient { SchoolNumber = 121, YearEntered = 2020, LastName = Буєвич } Abiturient { SchoolNumber = 100, YearEntered = 2020, LastName = Толмачов } Abiturient { SchoolNumber = 27, YearEntered = 2020, LastName = Гагарин }
+
