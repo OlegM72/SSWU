@@ -7,9 +7,12 @@ namespace Task_14_2
 
         static void Main(string[] args)
         {
-            Console.WriteLine("This is the example of DataContract serialization.");
+            Console.WriteLine("This is the example of DataContract serialization (XML).");
             Serialization.DataContractSerializationTest("../../../Storage.DataContractSerialized.xml");
-            
+
+            Console.WriteLine("\r\nThis is the example of DataContract serialization (JSON).");
+            Serialization.JSONDataContractSerializationTest("../../../Storage.DataContractSerialized.json");
+
             Console.WriteLine("\r\nThis is the example of Binary serialization (not recommended to use).");
             Serialization.BinarySerializationTest("../../../Storage.BinarySerialized.bin");
 

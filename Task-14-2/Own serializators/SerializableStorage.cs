@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Runtime.Serialization;
 using System.Xml;
@@ -138,8 +139,8 @@ namespace Task_14_2
                 // expiration date (days from now)
                 string[] words = line.Split(';', StringSplitOptions.RemoveEmptyEntries);
                 string name = char.ToUpper(words[0][0]) + words[0][1..]; // uppercase the first char
-                decimal price = Convert.ToDecimal(words[1]); // if error, there will be an exception
-                decimal weight = Convert.ToDecimal(words[2]); // the same :)
+                decimal price = Convert.ToDecimal(words[1], new CultureInfo("en-US")); // if error, there will be an exception
+                decimal weight = Convert.ToDecimal(words[2], new CultureInfo("en-US")); // the same :)
                 int catstr = Convert.ToInt32(words[3]);
                 SerializableMeat.Category cat;
                 if (catstr > 3 || catstr < 0)
